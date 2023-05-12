@@ -1,0 +1,16 @@
+name: PR Workflow
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    uses: ./.github/workflows/dart.yml
+    with:
+      coverage: false
