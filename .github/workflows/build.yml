@@ -12,6 +12,8 @@ concurrency:
 
 jobs:
   build:
-    uses: ./.github/workflows/dart.yml
+    uses: nikosportolos/dart-package@main
     with:
       coverage: true
+      codecov: true
+      codecov_token: ${{ secrets.CODECOV }}
