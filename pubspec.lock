@@ -30,10 +30,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: c2d6285796c3528b21dc4fb080394e1ae1c053a7
+      resolved-ref: b2b38e6e74ed607d05413837eecc57daab9cbc14
       url: "https://github.com/nikosportolos/ansix"
     source: git
-    version: "0.0.1+1"
+    version: "0.0.1"
   args:
     dependency: transitive
     description:

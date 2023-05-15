@@ -10,6 +10,7 @@ dependencies:
   ansix:
     git:
       url: https://github.com/nikosportolos/ansix
+    version: ^0.0.1
   data_class_plugin: ^0.3.1
   meta: ^1.9.1
   path: ^1.8.3
