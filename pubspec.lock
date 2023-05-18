@@ -28,12 +28,11 @@ packages:
   ansix:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: c2d6285796c3528b21dc4fb080394e1ae1c053a7
-      url: "https://github.com/nikosportolos/ansix"
-    source: git
-    version: "0.0.1+1"
+      name: ansix
+      sha256: d9ae2445e1e0fc6a113328ab177f7b3f1534eda301dec91cdf3f97b8362a4072
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2-prerelease"
   args:
     dependency: transitive
     description:

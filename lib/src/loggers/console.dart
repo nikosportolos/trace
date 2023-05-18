@@ -41,7 +41,7 @@ class ConsoleLogger implements Logger {
 
     _sink.writeAll(<String>[
       for (final LogFormatter formatter in formatters) formatter.format(entry),
-      newLine,
+      AnsiEscapeCodes.newLine,
     ]);
   }
 

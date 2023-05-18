@@ -104,7 +104,7 @@ class LoggerManager {
   @visibleForTesting
   void log(final LogEntry entry) {
     if (entry.level.index >= level.index) {
-      final List<String> s = entry.message.toString().split(newLine);
+      final List<String> s = entry.message.toString().split(AnsiEscapeCodes.newLine);
 
       final List<LogEntry> logs = s.map((String e) {
         return LogEntry(

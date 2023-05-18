@@ -29,7 +29,7 @@ class FormatTheme {
       timestampTheme: baseTheme,
       levelTheme: baseTheme.copyWith.fixedWidth(10),
       messageTheme: baseTheme,
-      errorTheme: baseTheme.copyWith.textStyle(
+      errorTheme: baseTheme.copyWith.style(
         const AnsiTextStyle(bold: true),
       ),
       stacktraceTheme: baseTheme,

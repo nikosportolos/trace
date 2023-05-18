@@ -7,9 +7,7 @@ environment:
   sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
-  ansix:
-    git:
-      url: https://github.com/nikosportolos/ansix
+  ansix: ^0.0.2-prerelease
   data_class_plugin: ^0.3.1
   meta: ^1.9.1
   path: ^1.8.3
