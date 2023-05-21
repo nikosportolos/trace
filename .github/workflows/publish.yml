@@ -1,10 +1,9 @@
-name: Build
+name: Publish Workflow
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
+  release:
+    types: [published]
 
 concurrency:
   group: ${{github.workflow}}-${{github.ref}}
@@ -20,6 +19,8 @@ jobs:
       - uses: actions/checkout@v3
       - uses: nikosportolos/dart_package@v0.0.5
         with:
-          coverage: ${{ inputs.coverage }}
+          coverage: true
           codecov: true
-          codecov_token: ${{ secrets.codecov_token }}
+          codecov_token: ${{ secrets.CODECOV_TOKEN }}
+          publish: true
+          pubdev_token: ${{ secrets.PUBDEV_TOKEN }}
