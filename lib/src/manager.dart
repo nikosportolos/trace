@@ -4,7 +4,11 @@ import 'package:trace/src/core/core.dart';
 
 class LoggerManager {
   LoggerManager() {
-    AnsiX.ensureSupportsAnsi();
+    try {
+      AnsiX.ensureSupportsAnsi();
+    } on AnsiNotSupported catch (e) {
+      warning(e.message);
+    }
   }
 
   final List<Logger> _loggers = <Logger>[];
@@ -63,17 +67,21 @@ class LoggerManager {
     ));
   }
 
-  /// Log warnings
-  void warning(final Object? message) {
+  /// Log warning messages
+  void warning(
+    final Object? message, [
+    final Object? error,
+    final StackTrace? stackTrace,
+  ]) {
     log(LogEntry(
       message: message,
-      error: null,
-      stacktrace: null,
+      error: error,
+      stacktrace: stackTrace,
       level: LogLevel.warning,
     ));
   }
 
-  /// Log errors
+  /// Log error messages
   void error(
     final Object? message, [
     final Object? error,
@@ -87,7 +95,7 @@ class LoggerManager {
     ));
   }
 
-  /// Log fatal errors
+  /// Log fatal error messages
   void fatal(
     final Object? message, [
     final Object? error,
@@ -101,6 +109,7 @@ class LoggerManager {
     ));
   }
 
+  /// Log a [LogEntry] using all registered loggers
   @visibleForTesting
   void log(final LogEntry entry) {
     if (entry.level.index >= level.index) {

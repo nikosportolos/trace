@@ -33,6 +33,9 @@ abstract class AnsiLogFormatter extends LogFormatter {
   };
 }
 
+/// **AnsiTimestampFormatter**
+///
+/// Formats [Timestamp] input with Ansi formatter
 class AnsiTimestampFormatter extends AnsiLogFormatter {
   const AnsiTimestampFormatter({
     required super.theme,
@@ -47,6 +50,9 @@ class AnsiTimestampFormatter extends AnsiLogFormatter {
   }
 }
 
+/// **AnsiLevelFormatter**
+///
+/// Formats [LogLevel] input with Ansi formatter
 class AnsiLevelFormatter extends AnsiLogFormatter {
   const AnsiLevelFormatter({
     required super.theme,
@@ -61,6 +67,9 @@ class AnsiLevelFormatter extends AnsiLogFormatter {
   }
 }
 
+/// **AnsiMessageFormatter**
+///
+/// Formats [Message] input with Ansi formatter
 class AnsiMessageFormatter extends AnsiLogFormatter {
   const AnsiMessageFormatter({
     required super.theme,
@@ -78,6 +87,9 @@ class AnsiMessageFormatter extends AnsiLogFormatter {
   }
 }
 
+/// **AnsiErrorFormatter**
+///
+/// Formats [Error] input with Ansi formatter
 class AnsiErrorFormatter extends AnsiLogFormatter {
   const AnsiErrorFormatter({
     required super.theme,
@@ -95,6 +107,9 @@ class AnsiErrorFormatter extends AnsiLogFormatter {
   }
 }
 
+/// **AnsiStacktraceFormatter**
+///
+/// Formats [StackTrace] input with Ansi formatter
 class AnsiStacktraceFormatter extends AnsiLogFormatter {
   const AnsiStacktraceFormatter({
     required super.theme,

@@ -6,6 +6,10 @@ abstract class FilterRule {
 
   /// Returns true if the filter rule is satisfied
   bool canLog(final LogEntry entry);
+
+  factory FilterRule.debug() => const DebugFilterRule();
+  factory FilterRule.level(final LogLevel level) => LevelFilterRule(level);
+  factory FilterRule.error(final Type type) => ErrorTypeFilterRule(type);
 }
 
 /// Filter log messages for debug mode
@@ -25,6 +29,9 @@ class LevelFilterRule extends FilterRule {
 
   @override
   bool canLog(final LogEntry entry) {
+    if (level == LogLevel.none) {
+      return false;
+    }
     return level.index <= entry.level.index;
   }
 }

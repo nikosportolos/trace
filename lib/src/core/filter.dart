@@ -11,7 +11,14 @@ abstract class LogFilter {
   final LevelCallback levelCallback;
   final List<FilterRule> rules;
 
-  bool canLog(final LogEntry entry);
+  bool canLog(final LogEntry entry) {
+    for (final FilterRule rule in rules) {
+      if (!rule.canLog(entry)) {
+        return false;
+      }
+    }
+    return true;
+  }
 }
 
 class SilentLogFilter extends LogFilter {
@@ -26,20 +33,11 @@ class SilentLogFilter extends LogFilter {
 class DefaultLogFilter extends LogFilter {
   DefaultLogFilter({
     required super.levelCallback,
+    final bool debugOnly = true,
   }) : super(
           rules: <FilterRule>[
-            const DebugFilterRule(),
+            if (debugOnly) const DebugFilterRule(),
             LevelFilterRule(levelCallback()),
           ],
         );
-
-  @override
-  bool canLog(final LogEntry entry) {
-    for (final FilterRule rule in rules) {
-      if (!rule.canLog(entry)) {
-        return false;
-      }
-    }
-    return true;
-  }
 }

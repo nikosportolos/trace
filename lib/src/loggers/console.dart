@@ -28,7 +28,7 @@ class ConsoleLogger implements Logger {
   final IOSink _sink;
 
   @override
-  late LogLevel level;
+  LogLevel level;
 
   @override
   Future<void> init() async {}
