@@ -4,14 +4,15 @@ import 'package:trace/src/trace.dart';
 
 void main() async {
   Trace.registerLogger(
-    ConsoleLogger(),
+    ConsoleLogger(
+      filter: MyLogFilter(),
+    ),
   );
-  Trace.level = LogLevel.verbose;
 
   Trace.verbose('This is a verbose test message');
   Trace.debug('This is a debug test message');
   Trace.info('This is an info test message');
-  Trace.warning('This is warning a test message');
+  Trace.warning('This is a warning test message');
   Trace.error(
     'This is an error test message',
     Exception('Random exception'),
@@ -24,4 +25,12 @@ void main() async {
   );
 
   await Trace.dispose();
+}
+
+class MyLogFilter extends LogFilter {
+  MyLogFilter({
+    super.rules = const <FilterRule>[],
+  }) : super(levelCallback: () => LogLevel.warning) {
+    rules.add(LevelFilterRule(levelCallback()));
+  }
 }
