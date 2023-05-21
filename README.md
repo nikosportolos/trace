@@ -1,6 +1,6 @@
 # Trace
 
-<!-- [![Pub Version](https://img.shields.io/pub/v/ansix?color=blue&logo=dart)](https://pub.dev/packages/trace) -->
+<!-- [![Pub Version](https://img.shields.io/pub/v/trace?color=blue&logo=dart)](https://pub.dev/packages/trace) -->
 
 [![Language](https://img.shields.io/badge/language-Dart-blue.svg)](https://dart.dev)
 [![Build](https://github.com/nikosportolos/trace/actions/workflows/build.yml/badge.svg)](https://github.com/nikosportolos/trace/actions/workflows/build.yml)
@@ -72,6 +72,12 @@ void main() async {
   await Trace.dispose();
 }
 ```
+
+<a href="https://raw.githubusercontent.com/nikosportolos/trace/main/assets/images/examples.png" target="_blank">
+  <img src="https://raw.githubusercontent.com/nikosportolos/trace/main/assets/images/examples.png" width="300" alt="examples">
+</a>
+
+
 
 You can also check the [example](https://github.com/nikosportolos/trace/tree/main/example) folder for more samples.
 
