@@ -15,7 +15,7 @@ class ConsoleLogger implements Logger {
     final FormatterTheme? theme,
   })  : _sink = ioSink ?? stdout,
         filter = filter ?? DefaultLogFilter(levelCallback: () => level),
-        formatters = LogFormatter.ansiFormat(
+        formatters = LogFormatter.ansiFormatters(
           level: logLevel,
           timestamp: logTimestamp,
           theme: theme ?? AnsiLogFormatter.defaultTheme,

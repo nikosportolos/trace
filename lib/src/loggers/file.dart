@@ -13,7 +13,7 @@ class FileLogger implements Logger {
     final bool logLevel = true,
     final bool logTimestamp = true,
   })  : filter = filter ?? DefaultLogFilter(levelCallback: () => level),
-        formatters = LogFormatter.defaultFormat(
+        formatters = LogFormatter.defaultFormatters(
           level: logLevel,
           timestamp: logTimestamp,
         ) {

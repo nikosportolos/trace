@@ -11,7 +11,7 @@ abstract class LogFormatter {
 
   String format(final LogEntry entry);
 
-  static List<LogFormatter> defaultFormat({
+  static List<LogFormatter> defaultFormatters({
     final bool level = false,
     final bool timestamp = false,
   }) {
@@ -24,7 +24,7 @@ abstract class LogFormatter {
     ];
   }
 
-  static List<LogFormatter> ansiFormat({
+  static List<LogFormatter> ansiFormatters({
     final bool level = false,
     final bool timestamp = false,
     required final FormatterTheme theme,
