@@ -1,6 +1,6 @@
 name: trace
 description: Trace log messages
-version: 0.0.1+1
+version: 0.0.1-prerelease
 publish_to: 'none'
 
 environment:
@@ -8,10 +8,8 @@ environment:
 
 dependencies:
   ansix: ^0.0.2-prerelease
-  data_class_plugin: ^0.3.1
   meta: ^1.9.1
   path: ^1.8.3
-  rxdart: ^0.27.7
   stack_trace: ^1.11.0
 
 dev_dependencies:
