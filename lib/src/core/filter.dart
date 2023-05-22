@@ -2,6 +2,10 @@ import 'package:trace/src/core/core.dart';
 
 typedef LevelCallback = LogLevel Function();
 
+/// **LogFilter**
+///
+/// Define a set of rules based on which it will be decided
+/// if the logger should print the message.
 abstract class LogFilter {
   const LogFilter({
     required this.levelCallback,
@@ -21,6 +25,9 @@ abstract class LogFilter {
   }
 }
 
+/// **SilentLogFilter**
+///
+/// This filter mutes all log messages.
 class SilentLogFilter extends LogFilter {
   const SilentLogFilter({
     required super.levelCallback,
@@ -30,6 +37,9 @@ class SilentLogFilter extends LogFilter {
   bool canLog(final LogEntry entry) => false;
 }
 
+/// **DefaultLogFilter**
+///
+/// This is the default filter for all loggers.
 class DefaultLogFilter extends LogFilter {
   DefaultLogFilter({
     required super.levelCallback,

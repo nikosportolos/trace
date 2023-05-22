@@ -24,7 +24,6 @@ class LoggerManager {
   /// Register a new logger
   void registerLogger(final Logger logger) {
     if (!_loggers.contains(logger)) {
-      logger.init();
       _loggers.add(logger);
     }
   }

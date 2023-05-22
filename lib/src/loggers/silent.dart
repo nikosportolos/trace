@@ -1,6 +1,9 @@
 import 'package:trace/src/core/core.dart';
-import 'package:trace/src/format/format.dart';
+import 'package:trace/src/core/formatter.dart';
 
+/// **SilentLogger**
+///
+/// A [Logger] that mutes all messages.
 class SilentLogger implements Logger {
   SilentLogger()
       : filter = SilentLogFilter(
@@ -14,13 +17,10 @@ class SilentLogger implements Logger {
   final LogFilter filter;
 
   @override
-  List<LogFormatter> get formatters => const <LogFormatter>[];
+  LogEntryFormatter get formatter => LogEntryFormatter.silent();
 
   @override
   set level(final LogLevel level) {}
-
-  @override
-  Future<void> init() async {}
 
   @override
   void print(final LogEntry entry) {}

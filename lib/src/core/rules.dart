@@ -1,18 +1,27 @@
 import 'package:trace/src/core/core.dart';
 
-/// Rules interface for filtering log messages
+/// **FilterRule**
+///
+/// Rule interface for filtering log messages.
 abstract class FilterRule {
   const FilterRule();
 
-  /// Returns true if the filter rule is satisfied
+  /// Returns true if the filter rule is satisfied.
   bool canLog(final LogEntry entry);
 
+  /// Returns a new instance of [DebugFilterRule].
   factory FilterRule.debug() => const DebugFilterRule();
+
+  /// Returns a new instance of [LevelFilterRule].
   factory FilterRule.level(final LogLevel level) => LevelFilterRule(level);
+
+  /// Returns a new instance of [ErrorTypeFilterRule].
   factory FilterRule.error(final Type type) => ErrorTypeFilterRule(type);
 }
 
-/// Filter log messages for debug mode
+/// **DebugFilterRule**
+///
+/// Filter log messages for debug mode.
 class DebugFilterRule extends FilterRule {
   const DebugFilterRule();
 
@@ -22,7 +31,9 @@ class DebugFilterRule extends FilterRule {
   }
 }
 
-/// Filter log messages by level
+/// **LevelFilterRule**
+///
+/// Filter log messages by level.
 class LevelFilterRule extends FilterRule {
   const LevelFilterRule(this.level);
   final LogLevel level;
@@ -36,7 +47,9 @@ class LevelFilterRule extends FilterRule {
   }
 }
 
-/// Filter log messages by error type
+/// **ErrorTypeFilterRule**
+///
+/// Filter log messages by error type.
 class ErrorTypeFilterRule extends FilterRule {
   const ErrorTypeFilterRule(this.type);
   final Type type;

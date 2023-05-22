@@ -1,5 +1,6 @@
 import 'package:trace/src/core/level.dart';
 
+/// **LogEntry**
 class LogEntry {
   LogEntry({
     this.message,

@@ -1,55 +1,39 @@
 import 'dart:io';
 
 import 'package:path/path.dart';
-import 'package:trace/src/core/core.dart';
-import 'package:trace/src/format/format.dart';
+import 'package:trace/src/loggers/io.dart';
 
-class FileLogger implements Logger {
+/// **FileLogger**
+///
+/// A [Logger] that prints messages to a file.
+class FileLogger extends IoLogger {
   FileLogger({
     final String? path,
     final String? filename,
-    final LogFilter? filter,
-    this.level = LogLevel.none,
-    final bool logLevel = true,
-    final bool logTimestamp = true,
-  })  : filter = filter ?? DefaultLogFilter(levelCallback: () => level),
-        formatters = LogFormatter.defaultFormatters(
-          level: logLevel,
-          timestamp: logTimestamp,
-        ) {
+    super.filter,
+    super.level,
+    super.logLevel,
+    super.logTimestamp,
+  }) : super(
+          ioSink: File(_getLogPath(path, filename)).safeOpen(),
+        );
+
+  static String _getLogPath(
+    final String? path,
+    final String? filename,
+  ) {
+    late final String logPath;
+
     if (path == null || path.isEmpty || path == '.') {
-      directory = Directory(path!);
+      logPath = join(Directory.current.path, 'logs');
     } else {
-      directory = Directory(
-        join(Directory.current.path, 'logs'),
-      );
+      logPath = path;
     }
 
-    this.filename = filename ?? _getFilePath();
+    return join(logPath, filename ?? _getFilePath());
   }
 
-  @override
-  final LogFilter filter;
-
-  @override
-  final List<LogFormatter> formatters;
-
-  late final Directory directory;
-  late final String filename;
-
-  @override
-  LogLevel level = LogLevel.info;
-
-  @override
-  Future<void> init() async {}
-
-  @override
-  void print(final LogEntry entry) {}
-
-  @override
-  Future<void> dispose() async {}
-
-  String _getFilePath() {
+  static String _getFilePath() {
     final DateTime now = DateTime.now();
 
     final String month = now.month.toString().padLeft(2, '0');
@@ -59,5 +43,15 @@ class FileLogger implements Logger {
     final String second = now.second.toString().padLeft(2, '0');
 
     return '${now.year}$month${day}_$hour$minute$second.log';
+  }
+}
+
+extension on File {
+  IOSink safeOpen() {
+    if (!existsSync()) {
+      createSync(recursive: true);
+    }
+
+    return openWrite();
   }
 }

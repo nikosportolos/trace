@@ -8,7 +8,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 **Trace** is a minimalistic logger for your Dart & Flutter projects, that uses 
-[AnsiX](https://pub.dev/ansix) to print customizable messages in console or files. 
+[AnsiX](https://pub.dev/ansix) to print customizable messages in terminal and files. 
 
 
 ## Table of contents
