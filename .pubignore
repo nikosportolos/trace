@@ -1,5 +1,6 @@
-/assets/*
 /.github/*
+/assets/*
 /coverage/*
+/logs/*
 /scripts/*
 /codecov.yaml
