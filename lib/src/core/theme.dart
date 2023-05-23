@@ -22,13 +22,14 @@ class FormatTheme {
   final AnsiTextTheme stacktraceTheme;
 
   static const AnsiTextTheme _defaultTextTheme = AnsiTextTheme(fixedWidth: 30);
+  static const AnsiTextTheme _levelTextTheme = AnsiTextTheme(fixedWidth: 10);
 
   /// **DefaultTheme**
   ///
   /// The default [FormatTheme] used by [Trace].
   static const FormatTheme defaultTheme = FormatTheme(
     timestampTheme: _defaultTextTheme,
-    levelTheme: AnsiTextTheme(fixedWidth: 10),
+    levelTheme: _levelTextTheme,
     messageTheme: _defaultTextTheme,
     errorTheme: _defaultTextTheme,
     stacktraceTheme: _defaultTextTheme,
@@ -44,11 +45,11 @@ class FormatTheme {
     final AnsiTextTheme baseTheme = AnsiTextTheme(
       foregroundColor: foregroundColor,
       backgroundColor: backgroundColor,
-      fixedWidth: 30,
+      fixedWidth: _defaultTextTheme.fixedWidth,
     );
     return FormatTheme(
       timestampTheme: baseTheme,
-      levelTheme: baseTheme.copyWith.fixedWidth(10),
+      levelTheme: baseTheme.copyWith.fixedWidth(_levelTextTheme.fixedWidth),
       messageTheme: baseTheme,
       errorTheme: baseTheme,
       stacktraceTheme: baseTheme,

@@ -40,10 +40,9 @@ abstract class IoLogger implements Logger {
       return;
     }
 
-    _sink.writeAll(<String>[
-      formatter.format(entry),
-      AnsiEscapeCodes.newLine,
-    ]);
+    _sink.write(
+      '${formatter.format(entry)}${AnsiEscapeCodes.newLine}',
+    );
   }
 
   @override
