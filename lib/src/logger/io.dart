@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:ansix/ansix.dart';
 import 'package:trace/src/core/core.dart';
-import 'package:trace/src/core/formatter.dart';
+import 'package:trace/src/filter/filters.dart';
+import 'package:trace/src/formatter/formatter.dart';
+import 'package:trace/src/logger/logger.dart';
 
 /// **IoLogger**
 ///
@@ -12,16 +14,10 @@ abstract class IoLogger implements Logger {
     required final IOSink ioSink,
     final LogFilter? filter,
     this.level = LogLevel.verbose,
-    final bool logLevel = true,
-    final bool logTimestamp = true,
     final LogEntryFormatter? formatter,
   })  : _sink = ioSink,
-        filter = filter ?? DefaultLogFilter(levelCallback: () => level),
-        formatter = formatter ??
-            LogEntryFormatter.standard(
-              level: logLevel,
-              timestamp: logTimestamp,
-            );
+        filter = filter ?? DefaultLogFilter(level),
+        formatter = formatter ?? LogEntryFormatter.$default();
 
   @override
   final LogFilter filter;

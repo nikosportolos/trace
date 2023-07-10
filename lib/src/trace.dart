@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:trace/src/core/core.dart';
+import 'package:trace/src/logger/logger.dart';
 import 'package:trace/src/manager.dart';
 
 abstract class Trace {

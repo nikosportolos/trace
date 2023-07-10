@@ -4,7 +4,8 @@ import 'package:ansix/ansix.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 import 'package:trace/src/core/core.dart';
-import 'package:trace/src/loggers/console.dart';
+import 'package:trace/src/filter/filters.dart';
+import 'package:trace/src/logger/loggers.dart';
 
 class MockIoSink extends Mock implements IOSink {
   @override
@@ -43,12 +44,10 @@ void main() {
   const LogLevel level = LogLevel.info;
 
   final MockIoSink sink = MockIoSink();
-  final LogFilter filter = DefaultLogFilter(levelCallback: () => level);
+  final LogFilter filter = DefaultLogFilter(level);
 
   final ConsoleLogger logger = ConsoleLogger(
     ioSink: sink,
-    logTimestamp: false,
-    logLevel: false,
     filter: filter,
   );
 

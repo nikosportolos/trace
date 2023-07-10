@@ -7,7 +7,7 @@ typedef LevelThemeMap = Map<LogLevel, FormatTheme>;
 ///
 /// Defines how each log section should be formatted.
 class FormatTheme {
-  const FormatTheme({
+  const FormatTheme._({
     required this.timestampTheme,
     required this.levelTheme,
     required this.messageTheme,
@@ -27,7 +27,7 @@ class FormatTheme {
   /// **DefaultTheme**
   ///
   /// The default [FormatTheme] used by [Trace].
-  static const FormatTheme defaultTheme = FormatTheme(
+  static const FormatTheme defaultTheme = FormatTheme._(
     timestampTheme: _defaultTextTheme,
     levelTheme: _levelTextTheme,
     messageTheme: _defaultTextTheme,
@@ -41,25 +41,31 @@ class FormatTheme {
   factory FormatTheme.create({
     final AnsiColor foregroundColor = AnsiColor.none,
     final AnsiColor backgroundColor = AnsiColor.none,
+    final AnsiTextTheme? timestampTheme,
+    final AnsiTextTheme? levelTheme,
+    final AnsiTextTheme? messageTheme,
+    final AnsiTextTheme? errorTheme,
+    final AnsiTextTheme? stacktraceTheme,
   }) {
     final AnsiTextTheme baseTheme = AnsiTextTheme(
       foregroundColor: foregroundColor,
       backgroundColor: backgroundColor,
       fixedWidth: _defaultTextTheme.fixedWidth,
     );
-    return FormatTheme(
-      timestampTheme: baseTheme,
-      levelTheme: baseTheme.copyWith.fixedWidth(_levelTextTheme.fixedWidth),
-      messageTheme: baseTheme,
-      errorTheme: baseTheme,
-      stacktraceTheme: baseTheme,
+
+    return FormatTheme._(
+      timestampTheme: timestampTheme ?? baseTheme,
+      levelTheme: levelTheme ?? baseTheme.copyWith.fixedWidth(_levelTextTheme.fixedWidth),
+      messageTheme: messageTheme ?? baseTheme,
+      errorTheme: errorTheme ?? baseTheme,
+      stacktraceTheme: stacktraceTheme ?? baseTheme,
     );
   }
 
-  /// **StandardThemeMap**
+  /// **DefaultThemeMap**
   ///
   /// The default [LevelThemeMap] with no ANSI formatting.
-  static final LevelThemeMap standardThemeMap = <LogLevel, FormatTheme>{
+  static final LevelThemeMap defaultThemeMap = <LogLevel, FormatTheme>{
     LogLevel.verbose: FormatTheme.defaultTheme,
     LogLevel.debug: FormatTheme.defaultTheme,
     LogLevel.info: FormatTheme.defaultTheme,

@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   ansix: ^0.0.8-prerelease
+  date_time_format: ^2.0.1
   meta: ^1.9.1
   path: ^1.8.3
   stack_trace: ^1.11.1

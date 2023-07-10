@@ -1,10 +1,10 @@
 import 'package:trace/trace.dart';
 
 void main() async {
-  Trace.registerLogger(
-    ConsoleLogger(),
-  );
-  Trace.level = LogLevel.none;
+  final ConsoleLogger logger = ConsoleLogger();
+
+  Trace.registerLogger(logger);
+  Trace.level = LogLevel.verbose;
 
   Trace.verbose('This is a verbose test message');
   Trace.debug('This is a debug test message');

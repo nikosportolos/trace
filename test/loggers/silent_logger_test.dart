@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
 import 'package:trace/src/core/core.dart';
-import 'package:trace/src/loggers/silent.dart';
+import 'package:trace/src/logger/silent.dart';
 
 void main() {
   group('SilentLogger', () {

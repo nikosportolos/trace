@@ -1,11 +1,17 @@
 import 'package:trace/src/core/core.dart';
-import 'package:trace/src/loggers/console.dart';
+import 'package:trace/src/filter/filters.dart';
+import 'package:trace/src/logger/loggers.dart';
 import 'package:trace/src/trace.dart';
+
+enum Environment { dev, prod }
 
 void main() async {
   Trace.registerLogger(
     ConsoleLogger(
-      filter: MyLogFilter(),
+      filter: CustomLogFilter(
+        environment: Environment.dev,
+        level: LogLevel.error,
+      ),
     ),
   );
 
@@ -27,10 +33,22 @@ void main() async {
   await Trace.dispose();
 }
 
-class MyLogFilter extends LogFilter {
-  MyLogFilter({
-    super.rules = const <FilterRule>[],
-  }) : super(levelCallback: () => LogLevel.warning) {
-    rules.add(LevelFilterRule(levelCallback()));
-  }
+class CustomLogFilter extends LogFilter {
+  CustomLogFilter({
+    required final Environment environment,
+    required final LogLevel level,
+  }) : super(rules: <FilterRule>[
+          const DebugFilterRule(),
+          CustomLogRule(environment),
+          LevelFilterRule(level),
+        ]);
+}
+
+class CustomLogRule extends FilterRule {
+  const CustomLogRule(this.environment);
+
+  final Environment environment;
+
+  @override
+  bool canLog(LogEntry entry) => environment == Environment.dev;
 }

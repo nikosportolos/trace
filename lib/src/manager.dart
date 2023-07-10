@@ -1,6 +1,7 @@
 import 'package:ansix/ansix.dart';
 import 'package:meta/meta.dart';
 import 'package:trace/src/core/core.dart';
+import 'package:trace/src/logger/logger.dart';
 
 class LoggerManager {
   LoggerManager() {
@@ -111,7 +112,7 @@ class LoggerManager {
   /// Log a [LogEntry] using all registered loggers
   @visibleForTesting
   void log(final LogEntry entry) {
-    if (entry.level.index >= level.index) {
+    if (entry.level >= level) {
       final List<String> s = entry.message.toString().split(AnsiEscapeCodes.newLine);
 
       final List<LogEntry> logs = s.map((String e) {

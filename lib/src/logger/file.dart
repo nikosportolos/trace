@@ -1,7 +1,8 @@
 import 'dart:io';
 
 import 'package:path/path.dart';
-import 'package:trace/src/loggers/io.dart';
+import 'package:trace/src/formatter/formatter.dart';
+import 'package:trace/src/logger/io.dart';
 
 /// **FileLogger**
 ///
@@ -12,10 +13,10 @@ class FileLogger extends IoLogger {
     final String? filename,
     super.filter,
     super.level,
-    super.logLevel,
-    super.logTimestamp,
+    final LogEntryFormatter? formatter,
   }) : super(
           ioSink: File(_getLogPath(path, filename)).safeOpen(),
+          formatter: formatter ?? LogEntryFormatter.$default(),
         );
 
   static String _getLogPath(

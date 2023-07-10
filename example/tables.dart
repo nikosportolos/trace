@@ -39,7 +39,7 @@ void main() {
         color: AnsiColor.white,
       ),
       fixedWidth: 15,
-      defaultAlignment: AnsiTextAlignment.center,
+      transparent: true,
     ),
   );
 }

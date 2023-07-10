@@ -1,5 +1,6 @@
 import 'package:trace/src/core/core.dart';
-import 'package:trace/src/core/formatter.dart';
+import 'package:trace/src/filter/filter.dart';
+import 'package:trace/src/formatter/formatter.dart';
 
 /// **Logger**
 ///
