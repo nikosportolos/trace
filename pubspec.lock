@@ -29,10 +29,10 @@ packages:
     dependency: "direct main"
     description:
       name: ansix
-      sha256: dc5bd166e74dcfe6b113a72a467eb1002734b05eaa09c326dc982fab9bd48bcb
+      sha256: fc91b99a3eb9388a4120fb2a827d53cae1bd1a58dfe6278b974e8efacc26f5e9
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.8-prerelease"
+    version: "0.0.9-prerelease"
   args:
     dependency: transitive
     description:

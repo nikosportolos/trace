@@ -7,7 +7,7 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  ansix: ^0.0.8-prerelease
+  ansix: ^0.0.9-prerelease
   meta: ^1.9.1
   path: ^1.8.3
   stack_trace: ^1.11.1
