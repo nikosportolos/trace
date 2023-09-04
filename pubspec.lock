@@ -29,10 +29,10 @@ packages:
     dependency: "direct main"
     description:
       name: ansix
-      sha256: dc5bd166e74dcfe6b113a72a467eb1002734b05eaa09c326dc982fab9bd48bcb
+      sha256: "2c6671cd5ca9c899b052d7ffa2c1cb50d8e5cc2dfd26febd48a64178bd692af1"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.8-prerelease"
+    version: "0.1.0"
   args:
     dependency: transitive
     description:
@@ -61,10 +61,10 @@ packages:
     dependency: transitive
     description:
       name: collection
-      sha256: f092b211a4319e98e5ff58223576de6c2803db36221657b46c82574721240687
+      sha256: ee67cb0715911d28db6bf4af1026078bd6f0128b07a5f66fb2ed94ec6783c09a
       url: "https://pub.dev"
     source: hosted
-    version: "1.17.2"
+    version: "1.18.0"
   convert:
     dependency: transitive
     description:
@@ -101,10 +101,10 @@ packages:
     dependency: transitive
     description:
       name: data_class_plugin
-      sha256: ad81ac48464e30799031ca4ad09f6e71ee4c8ffd38808749d9febcd61ae85734
+      sha256: "521b30b8830cd33f85d49a886be10f097e132957d7297a6dd34e34a7d37184a9"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.4"
   file:
     dependency: transitive
     description:
@@ -341,10 +341,10 @@ packages:
     dependency: transitive
     description:
       name: tachyon
-      sha256: "196386fb8d5ed995491087cd61afb6ba18ac6db9d892a67c9b5e7bc866d9499f"
+      sha256: edf0ce7e85e180f7d58d4cb35367b8d12770c2be7ffb5721f49f1213cca01619
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.7"
+    version: "0.0.8"
   term_glyph:
     dependency: transitive
     description:
@@ -397,10 +397,10 @@ packages:
     dependency: transitive
     description:
       name: watcher
-      sha256: "6a7f46926b01ce81bfc339da6a7f20afbe7733eff9846f6d6a5466aa4c6667c0"
+      sha256: "3d2ad6751b3c16cf07c7fca317a1413b3f26530319181b37e3b9039b84fc01d8"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.2"
+    version: "1.1.0"
   web_socket_channel:
     dependency: transitive
     description:
