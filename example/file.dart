@@ -1,25 +1,9 @@
-import 'package:ansix/ansix.dart';
 import 'package:trace/trace.dart';
 
 void main() async {
-  final ConsoleLogger logger = ConsoleLogger(
-    theme: LoggerTheme(
-      sections: <LogSection>[
-        LogSection.timestamp,
-        LogSection.level,
-        LogSection.message,
-      ],
-      timestampFormat: r'Y/m/d H:i:s.vu',
-      colorMap: LoggerTheme.defaultColorMap,
-      stacktraceIndent: 4,
-      timestampTheme: const AnsiTextTheme(
-        fixedWidth: 30,
-      ),
-      levelTheme: const AnsiTextTheme(
-        style: AnsiTextStyle(bold: true),
-        fixedWidth: 12,
-      ),
-    ),
+  final Logger logger = FileLogger(
+    filename: 'sample.log',
+    path: './example/logs',
   );
 
   Trace.registerLogger(logger);

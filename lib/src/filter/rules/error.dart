@@ -6,6 +6,7 @@ import 'package:trace/src/filter/rules/rule.dart';
 /// Filter log messages by error type.
 class ErrorTypeFilterRule extends FilterRule {
   const ErrorTypeFilterRule(this.type);
+
   final Type type;
 
   @override

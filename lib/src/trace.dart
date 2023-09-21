@@ -8,8 +8,12 @@ abstract class Trace {
   static final LoggerManager _manager = LoggerManager();
 
   static LogLevel get level => _manager.level;
+
   static set level(LogLevel value) => _manager.level = value;
+
   static void setVerbose() => level = LogLevel.verbose;
+
+  static Stream<LogEntry> get stream => _manager.stream;
 
   /// Register a new logger
   static void registerLogger(final Logger logger) => _manager.registerLogger(logger);
@@ -26,6 +30,9 @@ abstract class Trace {
   /// Log info messages
   static void info(final Object? message) => _manager.info(message);
 
+  /// Log success messages
+  static void success(final Object? message) => _manager.success(message);
+
   /// Log warning messages
   static void warning(final Object? message, [final Object? error, final StackTrace? stackTrace]) =>
       _manager.warning(message, error, stackTrace);
@@ -37,6 +44,9 @@ abstract class Trace {
   /// Log fatal error messages
   static void fatal(final Object? message, [final Object? error, final StackTrace? stackTrace]) =>
       _manager.fatal(message, error, stackTrace);
+
+  static void printListItem(final Object? message, {final int level = 0, final LogLevel logLevel = LogLevel.info}) =>
+      _manager.printListItem(message, level: level, logLevel: logLevel);
 
   /// Dispose all registered loggers
   static Future<void> dispose() async => await _manager.dispose();

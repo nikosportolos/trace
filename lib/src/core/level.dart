@@ -32,25 +32,31 @@ class LogLevel implements Comparable<LogLevel> {
   /// of the system or program, such as when it starts or stops.
   static const LogLevel info = LogLevel._('info', 3);
 
+  /// **SUCCESS**
+  ///
+  /// This log level is used to provide general information about the state
+  /// of the system or program, such as when it starts or stops.
+  static const LogLevel success = LogLevel._('success', 4);
+
   /// **WARNING**
   ///
   /// This log level is used to indicate potential issues or errors
   /// that could cause problems, but are not critical.
-  static const LogLevel warning = LogLevel._('warning', 4);
+  static const LogLevel warning = LogLevel._('warning', 5);
 
   /// **ERROR**
   ///
   /// This log level is used to indicate errors that have occurred,
   /// but are not fatal to the system or program.
-  static const LogLevel error = LogLevel._('error', 5);
+  static const LogLevel error = LogLevel._('error', 6);
 
   /// **FATAL**
   ///
   /// This log level is used to indicate critical errors that
   /// could cause the system or program to fail or crash.
-  static const LogLevel fatal = LogLevel._('fatal', 6);
+  static const LogLevel fatal = LogLevel._('fatal', 7);
 
-  static const List<LogLevel> values = <LogLevel>[none, verbose, debug, info, warning, error, fatal];
+  static const List<LogLevel> values = <LogLevel>[none, verbose, debug, info, success, warning, error, fatal];
 
   @override
   bool operator ==(Object other) => other is LogLevel && value == other.value;
@@ -71,4 +77,13 @@ class LogLevel implements Comparable<LogLevel> {
 
   @override
   String toString() => name;
+
+  String toJson() => name;
+
+  factory LogLevel.fromJson(final Map<String, dynamic> json) {
+    return values.where((LogLevel level) {
+          return level.name == json['level'];
+        }).firstOrNull ??
+        LogLevel.none;
+  }
 }

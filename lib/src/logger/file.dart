@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:path/path.dart';
-import 'package:trace/src/formatter/formatter.dart';
+import 'package:trace/src/formatter/theme/theme.dart';
 import 'package:trace/src/logger/io.dart';
 
 /// **FileLogger**
@@ -11,12 +11,12 @@ class FileLogger extends IoLogger {
   FileLogger({
     final String? path,
     final String? filename,
+    final LoggerTheme? theme,
     super.filter,
     super.level,
-    final LogEntryFormatter? formatter,
   }) : super(
           ioSink: File(_getLogPath(path, filename)).safeOpen(),
-          formatter: formatter ?? LogEntryFormatter.$default(),
+          theme: theme ?? LoggerTheme(),
         );
 
   static String _getLogPath(
@@ -31,17 +31,17 @@ class FileLogger extends IoLogger {
       logPath = path;
     }
 
-    return join(logPath, filename ?? _getFilePath());
+    return join(logPath, filename ?? _getFileName());
   }
 
-  static String _getFilePath() {
+  static String _getFileName() {
     final DateTime now = DateTime.now();
 
-    final String month = now.month.toString().padLeft(2, '0');
-    final String day = now.day.toString().padLeft(2, '0');
-    final String hour = now.hour.toString().padLeft(2, '0');
-    final String minute = now.minute.toString().padLeft(2, '0');
-    final String second = now.second.toString().padLeft(2, '0');
+    final String month = now.month.padded();
+    final String day = now.day.padded();
+    final String hour = now.hour.padded();
+    final String minute = now.minute.padded();
+    final String second = now.second.padded();
 
     return '${now.year}$month${day}_$hour$minute$second.log';
   }
@@ -55,4 +55,8 @@ extension on File {
 
     return openWrite();
   }
+}
+
+extension on int {
+  String padded() => toString().padLeft(2, '0');
 }

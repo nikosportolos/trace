@@ -9,6 +9,7 @@ void main() async {
   Trace.verbose('This is a verbose test message');
   Trace.debug('This is a debug test message');
   Trace.info('This is an info test message');
+  Trace.success('This is a success test message');
   Trace.warning('This is a warning test message');
   Trace.error(
     'This is an error test message',

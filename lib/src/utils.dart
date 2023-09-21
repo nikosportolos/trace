@@ -9,12 +9,12 @@ import 'package:trace/src/trace.dart';
 typedef OnErrorCallback = void Function(Object error, StackTrace stack);
 
 R? runTraced<R>(
-  R Function() body, {
-  Logger? logger,
-  LogLevel level = LogLevel.verbose,
-  OnErrorCallback? onError,
-  Map<Object?, Object?>? zoneValues,
-  ZoneSpecification? zoneSpecification,
+  final R Function() body, {
+  final Logger? logger,
+  final LogLevel level = LogLevel.verbose,
+  final OnErrorCallback? onError,
+  final Map<Object?, Object?>? zoneValues,
+  final ZoneSpecification? zoneSpecification,
 }) {
   try {
     AnsiX.ensureSupportsAnsi(silent: true);
@@ -24,18 +24,19 @@ R? runTraced<R>(
 
     return runZonedGuarded<R>(
       body,
-      onError ??
-          (Object error, StackTrace stack) {
-            Trace.fatal('📢 An unhandled error was traced.', error, stack);
-          },
+      onError ?? _onError,
       zoneValues: zoneValues,
       zoneSpecification: zoneSpecification,
     );
   } catch (e, st) {
     // ignore: avoid_print
-    print('Trace failed.\n$e\n$st'.red());
+    print('❌ Trace failed.\n$e\n$st'.red());
     return null;
   } finally {
     Trace.dispose();
   }
+}
+
+void _onError(final Object error, final StackTrace stack) {
+  Trace.fatal('📢 An unhandled error was traced.', error, stack);
 }

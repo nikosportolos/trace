@@ -4,13 +4,13 @@ part of 'section.dart';
 ///
 /// Formats [LogLevel] input with Ansi formatter.
 class LevelFormatter extends LogSectionFormatter {
-  const LevelFormatter({required super.theme});
+  const LevelFormatter();
 
   @override
-  String format(final LogEntry entry) {
+  String format(final LoggerTheme theme, final LogEntry entry) {
     return AnsiText.withTheme(
       entry.level.name.toUpperCase(),
-      theme[entry.level]?.levelTheme ?? FormatTheme.defaultTheme.levelTheme,
-    ).toString();
+      getTextThemeForSection(theme, entry.level, LogSection.level),
+    ).formattedText;
   }
 }

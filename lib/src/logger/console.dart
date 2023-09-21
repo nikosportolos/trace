@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:trace/src/formatter/formatter.dart';
+import 'package:trace/src/formatter/theme/theme.dart';
 import 'package:trace/src/logger/io.dart';
 
 /// **ConsoleLogger**
@@ -11,9 +11,9 @@ class ConsoleLogger extends IoLogger {
     final IOSink? ioSink,
     super.filter,
     super.level,
-    final LogEntryFormatter? formatter,
+    final LoggerTheme? theme,
   }) : super(
           ioSink: ioSink ?? stdout,
-          formatter: formatter ?? LogEntryFormatter.ansi(),
+          theme: theme ?? LoggerTheme(colorMap: LoggerTheme.defaultColorMap),
         );
 }

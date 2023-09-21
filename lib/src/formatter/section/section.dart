@@ -1,15 +1,11 @@
 import 'package:ansix/ansix.dart';
 import 'package:date_time_format/date_time_format.dart';
 import 'package:trace/src/core/core.dart';
-import 'package:trace/src/formatter/theme.dart';
+import 'package:trace/src/formatter/theme/theme.dart';
 
-part 'error.dart';
 part 'level.dart';
 part 'message.dart';
-part 'stacktrace.dart';
 part 'timestamp.dart';
-
-typedef LogLevelCallback = AnsiColor Function(LogEntry entry);
 
 /// **LogSectionFormatter**
 ///
@@ -17,19 +13,19 @@ typedef LogLevelCallback = AnsiColor Function(LogEntry entry);
 ///
 /// Requires an input [LevelThemeMap].
 abstract class LogSectionFormatter {
-  const LogSectionFormatter({required this.theme});
+  const LogSectionFormatter();
 
-  final LevelThemeMap theme;
+  factory LogSectionFormatter.level() => const LevelFormatter();
 
-  factory LogSectionFormatter.error(final LevelThemeMap theme) => ErrorFormatter(theme: theme);
+  factory LogSectionFormatter.message() => const MessageFormatter();
 
-  factory LogSectionFormatter.level(final LevelThemeMap theme) => LevelFormatter(theme: theme);
+  factory LogSectionFormatter.timestamp() => const TimestampFormatter();
 
-  factory LogSectionFormatter.message(final LevelThemeMap theme) => MessageFormatter(theme: theme);
+  String format(final LoggerTheme theme, final LogEntry entry);
 
-  factory LogSectionFormatter.stacktrace(final LevelThemeMap theme) => StacktraceFormatter(theme: theme);
-
-  factory LogSectionFormatter.timestamp(final LevelThemeMap theme) => TimestampFormatter(theme: theme);
-
-  String format(final LogEntry entry);
+  AnsiTextTheme getTextThemeForSection(final LoggerTheme theme, final LogLevel level, final LogSection section) {
+    final AnsiColor foregroundColor = theme.colorMap[level] ?? AnsiColor.none;
+    return theme.sectionThemeMap[section]?.textTheme.copyWith.foregroundColor(foregroundColor) ??
+        AnsiTextTheme(foregroundColor: foregroundColor);
+  }
 }

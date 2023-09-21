@@ -28,10 +28,11 @@ packages:
   ansix:
     dependency: "direct main"
     description:
-      name: ansix
-      sha256: "2c6671cd5ca9c899b052d7ffa2c1cb50d8e5cc2dfd26febd48a64178bd692af1"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "281907b0abf059ddcc42311e48454a74e38cb41c"
+      url: "https://github.com/nikosportolos/ansix"
+    source: git
     version: "0.1.0"
   args:
     dependency: transitive
@@ -58,7 +59,7 @@ packages:
     source: hosted
     version: "2.1.1"
   collection:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: collection
       sha256: ee67cb0715911d28db6bf4af1026078bd6f0128b07a5f66fb2ed94ec6783c09a
@@ -98,7 +99,7 @@ packages:
     source: hosted
     version: "2.3.2"
   data_class_plugin:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: data_class_plugin
       sha256: "521b30b8830cd33f85d49a886be10f097e132957d7297a6dd34e34a7d37184a9"
@@ -346,13 +347,13 @@ packages:
     source: hosted
     version: "1.2.0"
   tachyon:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: tachyon
-      sha256: edf0ce7e85e180f7d58d4cb35367b8d12770c2be7ffb5721f49f1213cca01619
+      sha256: "4f5a192640985133cd7bc7e53a45f82b1be73f3460ae10cd063c3dceab403421"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.8"
+    version: "0.0.9"
   term_glyph:
     dependency: transitive
     description:

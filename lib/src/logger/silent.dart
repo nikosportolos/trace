@@ -1,6 +1,6 @@
 import 'package:trace/src/core/core.dart';
 import 'package:trace/src/filter/filters.dart';
-import 'package:trace/src/formatter/formatter.dart';
+import 'package:trace/src/formatter/theme/theme.dart';
 import 'package:trace/src/logger/logger.dart';
 
 /// **SilentLogger**
@@ -16,9 +16,6 @@ class SilentLogger implements Logger {
   final LogFilter filter;
 
   @override
-  LogEntryFormatter get formatter => LogEntryFormatter.silent();
-
-  @override
   set level(final LogLevel level) {}
 
   @override
@@ -26,4 +23,7 @@ class SilentLogger implements Logger {
 
   @override
   Future<void> dispose() async {}
+
+  @override
+  LoggerTheme get theme => LoggerTheme();
 }

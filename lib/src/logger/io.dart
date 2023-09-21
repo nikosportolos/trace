@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:ansix/ansix.dart';
 import 'package:trace/src/core/core.dart';
 import 'package:trace/src/filter/filters.dart';
-import 'package:trace/src/formatter/formatter.dart';
+import 'package:trace/src/formatter/theme/theme.dart';
 import 'package:trace/src/logger/logger.dart';
 
 /// **IoLogger**
@@ -14,16 +14,13 @@ abstract class IoLogger implements Logger {
     required final IOSink ioSink,
     final LogFilter? filter,
     this.level = LogLevel.verbose,
-    final LogEntryFormatter? formatter,
+    final LoggerTheme? theme,
   })  : _sink = ioSink,
         filter = filter ?? DefaultLogFilter(level),
-        formatter = formatter ?? LogEntryFormatter.$default();
+        theme = theme ?? LoggerTheme();
 
   @override
   final LogFilter filter;
-
-  @override
-  final LogEntryFormatter formatter;
 
   @override
   LogLevel level;
@@ -31,14 +28,30 @@ abstract class IoLogger implements Logger {
   final IOSink _sink;
 
   @override
+  final LoggerTheme theme;
+
+  @override
   void print(final LogEntry entry) {
     if (!filter.canLog(entry)) {
       return;
     }
 
-    _sink.write(
-      '${formatter.format(entry)}${AnsiEscapeCodes.newLine}',
-    );
+    for (final LogSection section in theme.sections) {
+      final String? text = theme.sectionThemeMap[section]?.formatter.format(theme, entry);
+      if (text != null) {
+        write(text);
+      }
+    }
+
+    write(AnsiEscapeCodes.newLine);
+  }
+
+  void write(final String text) {
+    _sink.write(text);
+  }
+
+  void writeln(final String text) {
+    _sink.writeln(text);
   }
 
   @override

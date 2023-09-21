@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:developer' as dev;
+
 import 'package:ansix/ansix.dart';
 import 'package:meta/meta.dart';
 import 'package:trace/src/core/core.dart';
@@ -12,9 +15,15 @@ class LoggerManager {
     }
   }
 
+  final StreamController<LogEntry> _logController = StreamController<LogEntry>();
+
+  Stream<LogEntry> get stream => _logController.stream;
+
   final List<Logger> _loggers = <Logger>[];
   LogLevel _level = LogLevel.none;
+
   LogLevel get level => _level;
+
   set level(LogLevel value) {
     for (final Logger logger in _loggers) {
       logger.level = value;
@@ -22,14 +31,21 @@ class LoggerManager {
     _level = value;
   }
 
-  /// Register a new logger
+  /// Register a new [Logger]
   void registerLogger(final Logger logger) {
     if (!_loggers.contains(logger)) {
       _loggers.add(logger);
     }
   }
 
-  /// Unregister an existing logger
+  /// Register a list of [Logger]
+  void registerLoggers(final List<Logger> loggers) {
+    for (final Logger logger in loggers) {
+      registerLogger(logger);
+    }
+  }
+
+  /// Unregister an existing [Logger]
   void unregisterLogger(final Logger logger) {
     if (_loggers.contains(logger)) {
       logger.dispose();
@@ -39,7 +55,7 @@ class LoggerManager {
 
   /// Verbose logging
   void verbose(final Object? message) {
-    log(LogEntry(
+    log(LogEntry.create(
       message: message,
       error: null,
       stacktrace: null,
@@ -49,7 +65,7 @@ class LoggerManager {
 
   /// Log debugging messages
   void debug(final Object? message) {
-    log(LogEntry(
+    log(LogEntry.create(
       message: message,
       error: null,
       stacktrace: null,
@@ -59,11 +75,21 @@ class LoggerManager {
 
   /// Log info messages
   void info(final Object? message) {
-    log(LogEntry(
+    log(LogEntry.create(
       message: message,
       error: null,
       stacktrace: null,
       level: LogLevel.info,
+    ));
+  }
+
+  /// Log success messages
+  void success(final Object? message) {
+    log(LogEntry.create(
+      message: message,
+      error: null,
+      stacktrace: null,
+      level: LogLevel.success,
     ));
   }
 
@@ -73,7 +99,7 @@ class LoggerManager {
     final Object? error,
     final StackTrace? stackTrace,
   ]) {
-    log(LogEntry(
+    log(LogEntry.create(
       message: message,
       error: error,
       stacktrace: stackTrace,
@@ -87,7 +113,7 @@ class LoggerManager {
     final Object? error,
     final StackTrace? stackTrace,
   ]) {
-    log(LogEntry(
+    log(LogEntry.create(
       message: message,
       error: error,
       stacktrace: stackTrace,
@@ -101,7 +127,7 @@ class LoggerManager {
     final Object? error,
     final StackTrace? stackTrace,
   ]) {
-    log(LogEntry(
+    log(LogEntry.create(
       message: message,
       error: error,
       stacktrace: stackTrace,
@@ -116,7 +142,7 @@ class LoggerManager {
       final List<String> s = entry.message.toString().split(AnsiEscapeCodes.newLine);
 
       final List<LogEntry> logs = s.map((String e) {
-        return LogEntry(
+        return LogEntry.create(
           level: entry.level,
           message: e,
           error: entry.error,
@@ -129,13 +155,48 @@ class LoggerManager {
           logger.print(log);
         }
       }
+
+      _logController.add(entry);
     }
+  }
+
+  void printListItem(
+    final Object? message, {
+    final int level = 0,
+    required final LogLevel logLevel,
+    final Map<int, String> map = const <int, String>{
+      0: '>',
+      1: '─',
+      2: '*',
+      3: '○',
+      4: '■',
+      5: '•',
+      6: '‣',
+    },
+  }) {
+    final String tabs = '  ' * level;
+    final String indicator = map[level] ?? '-';
+
+    log(
+      LogEntry(
+        message: '$tabs$indicator $message',
+        level: logLevel,
+        timestamp: DateTime.now(),
+      ),
+    );
   }
 
   /// Dispose all registered loggers
   Future<void> dispose() async {
+    await _logController.close();
     for (final Logger logger in _loggers) {
-      await logger.dispose();
+      try {
+        await logger.dispose();
+      } catch (e, st) {
+        dev.log('Failed to dispose logger [${logger.runtimeType}]\n'
+            '${e.toString()}\n'
+            '${st.toString()}');
+      }
     }
   }
 }

@@ -1,14 +1,17 @@
 # Trace
 
-<!-- [![Pub Version](https://img.shields.io/pub/v/trace?color=blue&logo=dart)](https://pub.dev/packages/trace) -->
 
-[![Language](https://img.shields.io/badge/language-Dart-blue.svg)](https://dart.dev)
+[![Pub Version](https://img.shields.io/pub/v/trace?color=blue&logo=dart)](https://pub.dev/packages/trace)
+[![Pub Publisher](https://img.shields.io/pub/publisher/trace)](https://pub.dev/publishers/nikosportolos.com/packages)
+[![Pub Points](https://img.shields.io/pub/points/trace?color=blue&logo=dart)](https://pub.dev/packages/trace)
+
 [![Build](https://github.com/nikosportolos/trace/actions/workflows/build.yml/badge.svg)](https://github.com/nikosportolos/trace/actions/workflows/build.yml)
-[![codecov](https://codecov.io/gh/nikosportolos/trace/branch/main/graph/badge.svg?token=RBU7C1V1UO)](https://codecov.io/gh/nikosportolos/trace)
+[![codecov](https://codecov.io/gh/nikosportolos/trace/graph/badge.svg?token=EA0DRM7F67)](https://codecov.io/gh/nikosportolos/trace)
+[![Language](https://img.shields.io/badge/language-Dart-blue.svg)](https://dart.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 **Trace** is a minimalistic logger for your Dart & Flutter projects, that uses 
-[AnsiX](https://pub.dev/ansix) to print customizable messages in terminal and files. 
+[AnsiX](https://pub.dev/ansix) to print customizable messages in terminal and export log files. 
 
 
 ## Table of contents

@@ -1,3 +1,4 @@
+import 'package:ansix/ansix.dart' show isDebugMode;
 import 'package:trace/src/core/core.dart';
 import 'package:trace/src/filter/rules/rule.dart';
 
