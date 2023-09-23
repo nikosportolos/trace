@@ -15,12 +15,6 @@ part 'timestamp.dart';
 abstract class LogSectionFormatter {
   const LogSectionFormatter();
 
-  factory LogSectionFormatter.level() => const LevelFormatter();
-
-  factory LogSectionFormatter.message() => const MessageFormatter();
-
-  factory LogSectionFormatter.timestamp() => const TimestampFormatter();
-
   String format(final LoggerTheme theme, final LogEntry entry);
 
   AnsiTextTheme getTextThemeForSection(final LoggerTheme theme, final LogLevel level, final LogSection section) {

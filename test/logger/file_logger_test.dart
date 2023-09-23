@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:ansix/ansix.dart';
 import 'package:path/path.dart';
 import 'package:test/test.dart';
 import 'package:trace/src/core/entry.dart';
@@ -15,14 +16,16 @@ void main() {
   final Directory logDirectory = Directory(join(Directory.current.path, 'test', 'logs'));
 
   final LogFilter filter = DefaultLogFilter(level);
-  final Logger logger = FileLogger(
+  final IoLogger logger = FileLogger(
     path: logDirectory.path,
     filter: filter,
     theme: LoggerTheme(
       sections: <LogSection>[
+        LogSection.timestamp,
         LogSection.level,
         LogSection.message,
       ],
+      timestampFormat: 'j/n/Y',
     ),
   );
 
@@ -37,6 +40,7 @@ void main() {
       expect(filter.canLog(entry), true);
 
       logger.print(entry);
+      logger.writeln('testing writeln');
 
       final List<FileSystemEntity> files = logDirectory.listSync(recursive: true);
       expect(files.length, 1);
@@ -46,7 +50,27 @@ void main() {
       final File file = File(files.first.path);
       final String text = file.readAsStringSync();
 
-      expect(text, 'INFO      This is an info message.\n');
+      final DateTime now = DateTime.now();
+      final String timestamp = '${now.day}/${now.month}/${now.year}';
+      final String expected = '$timestamp         INFO      This is an info message.\ntesting writeln\n';
+
+      expect(text, expected);
+    });
+
+    test('Default FileLogger', () async {
+      final IoLogger logger = FileLogger();
+
+      expect(
+        logger.theme.sections,
+        const <LogSection>[
+          LogSection.timestamp,
+          LogSection.level,
+          LogSection.message,
+        ],
+      );
+      expect(logger.theme.timestampFormat, r'H:i:s.vu');
+      expect(logger.theme.colorMap, <LogLevel, AnsiColor>{});
+      expect(logger.theme.stacktraceIndent, 4);
     });
   });
 }

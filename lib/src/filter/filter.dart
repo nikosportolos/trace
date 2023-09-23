@@ -5,7 +5,7 @@ typedef LevelCallback = LogLevel Function();
 
 /// **LogFilter**
 ///
-/// Define a set of rules based on which it will be decided
+/// Defines a set of rules based on which it will be decided
 /// if the logger should print the message.
 abstract class LogFilter {
   LogFilter({this.rules});

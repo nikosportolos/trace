@@ -151,8 +151,8 @@ class _LogEntryCopyWithProxyImpl implements _LogEntryCopyWithProxy {
     return _$LogEntryImpl(
       level: level ?? _value.level,
       timestamp: timestamp ?? _value.timestamp,
-      message: identical(message, const Object()) ? _value.message : (message as Object?),
-      error: identical(error, const Object()) ? _value.error : (error as Object?),
+      message: identical(message, const Object()) ? _value.message : message,
+      error: identical(error, const Object()) ? _value.error : error,
       stacktrace: identical(stacktrace, const Object()) ? _value.stacktrace : (stacktrace as StackTrace?),
     );
   }
@@ -219,8 +219,8 @@ class _LogEntryCopyWithProxyChainImpl<$Result> implements $LogEntryCopyWithProxy
     return _chain(_$LogEntryImpl(
       level: level ?? _value.level,
       timestamp: timestamp ?? _value.timestamp,
-      message: identical(message, const Object()) ? _value.message : (message as Object?),
-      error: identical(error, const Object()) ? _value.error : (error as Object?),
+      message: identical(message, const Object()) ? _value.message : message,
+      error: identical(error, const Object()) ? _value.error : error,
       stacktrace: identical(stacktrace, const Object()) ? _value.stacktrace : (stacktrace as StackTrace?),
     ));
   }

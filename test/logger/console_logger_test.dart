@@ -17,7 +17,7 @@ void main() {
   final MockIoSink sink = MockIoSink();
   final LogFilter filter = DefaultLogFilter(level);
 
-  final Logger logger = ConsoleLogger(
+  final IoLogger logger = ConsoleLogger(
     ioSink: sink,
     filter: filter,
     theme: LoggerTheme(
