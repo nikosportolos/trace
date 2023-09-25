@@ -1,5 +1,6 @@
 import 'dart:io' if (dart.library.html) 'dart:html';
 
+import 'package:ansix/ansix.dart';
 import 'package:path/path.dart';
 import 'package:trace/src/formatter/theme/theme.dart';
 import 'package:trace/src/logger/io/io.dart';
@@ -19,6 +20,16 @@ class FileLogger extends IoLogger {
           ioSink: File(_getLogPath(path, filename)).safeOpen(),
           theme: theme ?? LoggerTheme(),
         );
+
+  @override
+  void print(final Object? message) {
+    super.print(message.toString().unformatted);
+  }
+
+  @override
+  void write(final Object? message) {
+    super.write(message.toString().unformatted);
+  }
 
   static String _getLogPath(
     final String? path,

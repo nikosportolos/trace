@@ -39,11 +39,15 @@ abstract class IoLogger implements Logger {
     for (final LogSection section in theme.sections) {
       final String? text = theme.sectionThemeMap[section]?.formatter.format(theme, entry);
       if (text != null) {
-        _sink.write(text);
+        print(text);
       }
     }
 
-    _sink.write(AnsiEscapeCodes.newLine);
+    print(AnsiEscapeCodes.newLine);
+  }
+
+  print(final Object? message) {
+    _sink.write(message);
   }
 
   @override
