@@ -101,10 +101,10 @@ packages:
     dependency: "direct main"
     description:
       name: data_class_plugin
-      sha256: "521b30b8830cd33f85d49a886be10f097e132957d7297a6dd34e34a7d37184a9"
+      sha256: cd4a6829a2060e5145cbce1fd9cbb20949ab4ec763e71d1050dec5d64d09a18c
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.4"
+    version: "1.0.5"
   date_time_format:
     dependency: "direct main"
     description:
