@@ -15,6 +15,8 @@ abstract class Trace {
 
   static Stream<LogEntry> get stream => _manager.stream;
 
+  static Map<int, ListItemTheme> listItemThemeMap = ListItemTheme.$defaultTheme;
+
   /// Register a new logger
   static void registerLogger(final Logger logger) => _manager.registerLogger(logger);
 
@@ -26,6 +28,11 @@ abstract class Trace {
 
   /// Unregister a list of loggers
   static void unregisterLoggers(final List<Logger> loggers) => loggers.forEach(_manager.unregisterLogger);
+
+  /// Log a message with no filters nor formatting
+  ///
+  /// **Use with caution on production.**
+  static void print(final Object? message) => _manager.print(message);
 
   /// Log a verbose message
   static void verbose(final Object? message) => _manager.verbose(message);
@@ -51,8 +58,13 @@ abstract class Trace {
   static void fatal(final Object? message, [final Object? error, final StackTrace? stackTrace]) =>
       _manager.fatal(message, error, stackTrace);
 
-  static void printListItem(final Object? message, {final int level = 0, final LogLevel logLevel = LogLevel.info}) =>
-      _manager.printListItem(message, level: level, logLevel: logLevel);
+  static void printListItem(
+    final Object? message, {
+    final int level = 0,
+    final LogLevel logLevel = LogLevel.info,
+    final Map<int, ListItemTheme>? map,
+  }) =>
+      _manager.printListItem(message, level: level, logLevel: logLevel, map: map ?? listItemThemeMap);
 
   /// Dispose all registered loggers
   static Future<void> dispose() async => await _manager.dispose();

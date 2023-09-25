@@ -53,6 +53,15 @@ class LoggerManager {
     }
   }
 
+  /// Standard logging
+  ///
+  /// No filters nor formatting is applied.
+  void print(final Object? message) {
+    for (final Logger logger in _loggers) {
+      logger.write(message);
+    }
+  }
+
   /// Verbose logging
   void verbose(final Object? message) {
     log(LogEntry.create(
@@ -163,23 +172,16 @@ class LoggerManager {
   void printListItem(
     final Object? message, {
     final int level = 0,
-    required final LogLevel logLevel,
-    final Map<int, String> map = const <int, String>{
-      0: '>',
-      1: '─',
-      2: '*',
-      3: '○',
-      4: '■',
-      5: '•',
-      6: '‣',
-    },
+    final LogLevel logLevel = LogLevel.info,
+    final Map<int, ListItemTheme> map = ListItemTheme.$defaultTheme,
   }) {
     final String tabs = '  ' * level;
-    final String indicator = map[level] ?? '-';
+    final String indicator = map[level]?.symbol ?? '-';
+    final AnsiColor color = map[level]?.foregroundColor ?? AnsiColor.none;
 
     log(
       LogEntry(
-        message: '$tabs$indicator $message',
+        message: '$tabs${indicator.colored(foreground: color)} $message',
         level: logLevel,
         timestamp: DateTime.now(),
       ),
