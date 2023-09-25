@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:io' if (dart.library.html) 'dart:html';
 
 import 'package:ansix/ansix.dart';
 import 'package:path/path.dart';
@@ -39,8 +39,8 @@ void main() {
       final LogEntry entry = LogEntry.create(level: level, message: message);
       expect(filter.canLog(entry), true);
 
-      logger.print(entry);
-      logger.writeln('testing writeln');
+      logger.log(entry);
+      logger.write('testing writeln');
 
       final List<FileSystemEntity> files = logDirectory.listSync(recursive: true);
       expect(files.length, 1);

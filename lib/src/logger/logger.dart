@@ -6,10 +6,15 @@ import 'package:trace/src/formatter/theme/theme.dart';
 ///
 /// Base interface for loggers.
 abstract class Logger {
-  LogFilter get filter;
-  LoggerTheme get theme;
   LogLevel level = LogLevel.info;
 
-  void print(final LogEntry entry);
+  LogFilter get filter;
+
+  LoggerTheme get theme;
+
+  void log(final LogEntry entry);
+
+  void write(final Object? message);
+
   Future<void> dispose();
 }

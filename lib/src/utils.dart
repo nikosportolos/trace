@@ -2,8 +2,7 @@ import 'dart:async';
 
 import 'package:ansix/ansix.dart';
 import 'package:trace/src/core/core.dart';
-import 'package:trace/src/logger/console.dart';
-import 'package:trace/src/logger/logger.dart';
+import 'package:trace/src/logger/loggers.dart';
 import 'package:trace/src/trace.dart';
 
 typedef OnErrorCallback = void Function(Object error, StackTrace stack);

@@ -19,7 +19,10 @@ class SilentLogger implements Logger {
   set level(final LogLevel level) {}
 
   @override
-  void print(final LogEntry entry) {}
+  void log(final LogEntry entry) {}
+
+  @override
+  void write(final Object? message) {}
 
   @override
   Future<void> dispose() async {}

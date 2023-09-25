@@ -1,6 +1,5 @@
-import 'dart:io';
+// ignore_for_file: avoid_print
 
-import 'package:ansix/ansix.dart';
 import 'package:trace/src/core/core.dart';
 import 'package:trace/src/filter/filters.dart';
 import 'package:trace/src/formatter/theme/theme.dart';
@@ -8,15 +7,13 @@ import 'package:trace/src/logger/logger.dart';
 
 /// **IoLogger**
 ///
-/// A [Logger] interface that uses an input [IOSink] to log messages.
-abstract class IoLogger implements Logger {
-  IoLogger({
-    required final IOSink ioSink,
+/// A [Logger] interface used on Flutter Web apps.
+abstract class WebLogger implements Logger {
+  WebLogger({
     final LogFilter? filter,
     this.level = LogLevel.verbose,
     final LoggerTheme? theme,
-  })  : _sink = ioSink,
-        filter = filter ?? DefaultLogFilter(level),
+  })  : filter = filter ?? DefaultLogFilter(level),
         theme = theme ?? LoggerTheme();
 
   @override
@@ -25,38 +22,32 @@ abstract class IoLogger implements Logger {
   @override
   LogLevel level;
 
-  final IOSink _sink;
-
   @override
   final LoggerTheme theme;
 
   @override
-  void print(final LogEntry entry) {
+  void log(final LogEntry entry) {
     if (!filter.canLog(entry)) {
       return;
     }
 
+    final StringBuffer buffer = StringBuffer();
+
     for (final LogSection section in theme.sections) {
       final String? text = theme.sectionThemeMap[section]?.formatter.format(theme, entry);
       if (text != null) {
-        write(text);
+        buffer.write(text);
       }
     }
 
-    write(AnsiEscapeCodes.newLine);
-  }
-
-  void write(final String text) {
-    _sink.write(text);
-  }
-
-  void writeln(final String text) {
-    _sink.writeln(text);
+    write(buffer.toString());
   }
 
   @override
-  Future<void> dispose() async {
-    await _sink.flush();
-    await _sink.close();
+  void write(final Object? message) {
+    print(message);
   }
+
+  @override
+  Future<void> dispose() async {}
 }

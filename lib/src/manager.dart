@@ -152,7 +152,7 @@ class LoggerManager {
 
       for (final Logger logger in _loggers) {
         for (final LogEntry log in logs) {
-          logger.print(log);
+          logger.log(log);
         }
       }
 
