@@ -22,7 +22,7 @@ void main() {
 
     test('print [$level]', () {
       final LogEntry entry = LogEntry.create(level: level, message: message);
-      logger.print(entry);
+      logger.log(entry);
     });
 
     test('theme', () {

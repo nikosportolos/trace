@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:io' if (dart.library.html) 'dart:html';
 
 import 'package:mocktail/mocktail.dart';
 import 'package:trace/src/core/core.dart';

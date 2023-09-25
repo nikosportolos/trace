@@ -34,7 +34,7 @@ void main() {
   group('ConsoleLogger', () {
     test('print [LogLevel.info]', () {
       final LogEntry entry = LogEntry.create(level: level, message: message);
-      logger.print(entry);
+      logger.log(entry);
 
       expect(filter.canLog(entry), true);
       verify(() => sink.write('INFO      ')).called(1);
@@ -44,14 +44,14 @@ void main() {
 
     test("don't print [LogLevel.none]", () {
       final LogEntry entry = MockLogEntry(level: LogLevel.none);
-      logger.print(entry);
+      logger.log(entry);
       expect(filter.canLog(entry), false);
       verifyNever(() => sink.write(''));
     });
 
     test("don't print [LogLevel.debug]", () {
       final LogEntry entry = MockLogEntry(level: LogLevel.debug);
-      logger.print(entry);
+      logger.log(entry);
       expect(filter.canLog(entry), false);
       verifyNever(() => sink.write(''));
     });

@@ -1,8 +1,9 @@
-import 'dart:io';
+import 'dart:io' if (dart.library.html) 'dart:html';
 
 import 'package:path/path.dart';
 import 'package:trace/src/formatter/theme/theme.dart';
-import 'package:trace/src/logger/io.dart';
+import 'package:trace/src/logger/io/io.dart';
+import 'package:trace/src/logger/logger.dart';
 
 /// **FileLogger**
 ///
@@ -25,7 +26,7 @@ class FileLogger extends IoLogger {
   ) {
     late final String logPath;
 
-    if (path == null || path.isEmpty || path == '.') {
+    if (_isWeb || (path == null || path.isEmpty || path == '.')) {
       logPath = join(Directory.current.path, 'logs');
     } else {
       logPath = path;
@@ -46,6 +47,14 @@ class FileLogger extends IoLogger {
     return '${now.year}$month${day}_$hour$minute$second.log';
   }
 }
+
+bool get _isWeb =>
+    !Platform.isAndroid &&
+    !Platform.isIOS &&
+    !Platform.isMacOS &&
+    !Platform.isWindows &&
+    !Platform.isFuchsia &&
+    !Platform.isLinux;
 
 extension on File {
   IOSink safeOpen() {
