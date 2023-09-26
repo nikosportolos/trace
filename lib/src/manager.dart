@@ -3,6 +3,7 @@ import 'dart:developer' as dev;
 
 import 'package:ansix/ansix.dart';
 import 'package:meta/meta.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:trace/src/core/core.dart';
 import 'package:trace/src/logger/logger.dart';
 
@@ -15,7 +16,7 @@ class LoggerManager {
     }
   }
 
-  final StreamController<LogEntry> _logController = StreamController<LogEntry>();
+  final PublishSubject<LogEntry> _logController = PublishSubject<LogEntry>();
 
   Stream<LogEntry> get stream => _logController.stream;
 
@@ -190,7 +191,14 @@ class LoggerManager {
 
   /// Dispose all registered loggers
   Future<void> dispose() async {
-    await _logController.close();
+    try {
+      await _logController.close();
+    } catch (e, st) {
+      dev.log('Failed to dispose the stream controller\n'
+          '${e.toString()}\n'
+          '${st.toString()}');
+    }
+
     for (final Logger logger in _loggers) {
       try {
         await logger.dispose();

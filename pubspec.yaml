@@ -17,6 +17,7 @@ dependencies:
   date_time_format: ^2.0.1
   meta: ^1.10.0
   path: ^1.8.3
+  rxdart: ^0.27.7
   stack_trace: ^1.11.1
 
 dev_dependencies:
