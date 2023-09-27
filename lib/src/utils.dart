@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:ansix/ansix.dart';
 import 'package:trace/src/core/core.dart';
+import 'package:trace/src/filter/default.dart';
 import 'package:trace/src/logger/loggers.dart';
 import 'package:trace/src/trace.dart';
 
@@ -14,12 +15,25 @@ R? runTraced<R>(
   final OnErrorCallback? onError,
   final Map<Object?, Object?>? zoneValues,
   final ZoneSpecification? zoneSpecification,
+  final bool debugOnly = true,
+  final bool forceAnsi = false,
 }) {
   try {
-    AnsiX.ensureSupportsAnsi(silent: true);
+    AnsiX.ensureSupportsAnsi(
+      silent: true,
+      force: forceAnsi,
+    );
 
     Trace.level = level;
-    Trace.registerLogger(logger ?? ConsoleLogger());
+    Trace.registerLogger(
+      logger ??
+          ConsoleLogger(
+            filter: DefaultLogFilter(
+              level,
+              debugOnly: debugOnly,
+            ),
+          ),
+    );
 
     return runZonedGuarded<R>(
       body,
