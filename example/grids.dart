@@ -5,7 +5,14 @@ import 'package:trace/trace.dart';
 import 'mocks/mocks.dart';
 
 void main() {
-  Trace.registerLogger(ConsoleLogger());
+  Trace.registerLogger(
+    ConsoleLogger(
+      filter: DefaultLogFilter(
+        LogLevel.verbose,
+        debugOnly: false,
+      ),
+    ),
+  );
 
   final List<List<Object?>> rows = <List<Object?>>[
     <Object?>['#', 'Title', 'Release Year', 'IMDb Rate'],

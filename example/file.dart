@@ -4,6 +4,10 @@ void main() async {
   final Logger logger = FileLogger(
     filename: 'sample.log',
     path: './example/logs',
+    filter: DefaultLogFilter(
+      LogLevel.verbose,
+      debugOnly: false,
+    ),
   );
 
   Trace.registerLogger(logger);

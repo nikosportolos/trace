@@ -4,7 +4,14 @@ import 'package:trace/trace.dart';
 import 'mocks/mocks.dart';
 
 void main() {
-  Trace.registerLogger(ConsoleLogger());
+  Trace.registerLogger(
+    ConsoleLogger(
+      filter: DefaultLogFilter(
+        LogLevel.verbose,
+        debugOnly: false,
+      ),
+    ),
+  );
 
   Trace.info(AnsiTreeView(
     <dynamic, dynamic>{

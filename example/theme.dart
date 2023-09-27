@@ -3,6 +3,10 @@ import 'package:trace/trace.dart';
 
 void main() async {
   final ConsoleLogger logger = ConsoleLogger(
+    filter: DefaultLogFilter(
+      LogLevel.verbose,
+      debugOnly: false,
+    ),
     theme: LoggerTheme(
       sections: <LogSection>[
         LogSection.timestamp,
