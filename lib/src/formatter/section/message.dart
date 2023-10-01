@@ -4,7 +4,14 @@ part of 'section.dart';
 ///
 /// Formats [Message] input with Ansi formatter.
 class MessageFormatter extends LogSectionFormatter {
-  const MessageFormatter();
+  const MessageFormatter({
+    final bool? showError,
+    final bool? showStackTrace,
+  })  : showError = showError ?? true,
+        showStackTrace = showStackTrace ?? true;
+
+  final bool showError;
+  final bool showStackTrace;
 
   @override
   String format(final LoggerTheme theme, final LogEntry entry) {
@@ -15,13 +22,13 @@ class MessageFormatter extends LogSectionFormatter {
     final StringBuffer buffer = StringBuffer();
     buffer.write(entry.message);
 
-    if (entry.error != null) {
+    if (entry.error != null && showError) {
       buffer.writeln();
       buffer.writeSpaces(theme.stacktraceIndent);
       buffer.write(entry.error);
     }
 
-    if (entry.stacktrace != null) {
+    if (entry.stacktrace != null && showStackTrace) {
       buffer.writeln();
       buffer.write(
         entry.stacktrace
