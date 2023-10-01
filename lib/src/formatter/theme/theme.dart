@@ -102,6 +102,8 @@ class LoggerTheme {
     final LogSectionFormatter? levelFormatter,
     final AnsiTextTheme? messageTheme,
     final LogSectionFormatter? messageFormatter,
+    final bool? showError,
+    final bool? showStackTrace,
   }) {
     for (final LogSection section in sections) {
       switch (section) {
@@ -127,7 +129,11 @@ class LoggerTheme {
           _sectionThemeMap.addAll(<LogSection, LogSectionTheme>{
             section: LogSectionTheme(
               textTheme: messageTheme ?? const AnsiTextTheme(),
-              formatter: messageFormatter ?? const MessageFormatter(),
+              formatter: messageFormatter ??
+                  MessageFormatter(
+                    showError: showError,
+                    showStackTrace: showStackTrace,
+                  ),
             ),
           });
           break;
