@@ -12,7 +12,7 @@
 
 
 **Trace** is a minimalistic logger for your Dart & Flutter projects, that uses 
-[AnsiX](https://pub.dev/ansix) to print customizable messages in terminal and export log files. 
+[AnsiX](https://pub.dev/packages/ansix) to print customizable messages in terminal and export log files. 
 
 > This is a pre-release version of **Trace**, so using it in a 
 > production environment is not recommended yet.
@@ -26,7 +26,7 @@
 ## Table of contents
 
 - [Usage](#usage)
-  - [Trace](#trace-1)
+  - [Trace](#usage)
     - [Register/unregister loggers](#registerunregister-loggers)
     - [Log Levels](#log-levels)
     - [Logging methods](#logging)
@@ -263,9 +263,11 @@ A collection of properties used by [Trace] in order to format the log messages.
 import 'package:trace/trace.dart';
 
 void main() async {
-  Trace.registerLogger(
+  // Register your loggers
+  Trace.registerLoggers([
     ConsoleLogger(),
-  );
+    FileLogger(),
+  ]);
 
   Trace.verbose('This is a verbose test message');
   Trace.debug('This is a debug test message');
@@ -283,16 +285,44 @@ void main() async {
     StackTrace.current,
   );
 
+  // Don't forget to dispose Trace
   await Trace.dispose();
 }
 ```
+
+- Output in console
 
 <a href="https://raw.githubusercontent.com/nikosportolos/trace/main/assets/images/examples.png" target="_blank">
   <img src="https://raw.githubusercontent.com/nikosportolos/trace/main/assets/images/examples.png" width="800" alt="examples">
 </a>
 
+- Output in file
+
+<a href="https://raw.githubusercontent.com/nikosportolos/trace/main/assets/images/file-example.png" target="_blank">
+  <img src="https://raw.githubusercontent.com/nikosportolos/trace/main/assets/images/file-example.png" width="800" alt="file-example">
+</a>
+
 
 You can also check the [example](https://github.com/nikosportolos/trace/tree/main/example) folder for more samples.
+
+## FAQ
+
+- **Q:** Nothing is printed out when running on release mode.
+  
+  **A:** The default formatter of all loggers contains the DebugFilterRule. 
+  If you want your loggers to print messages when running on release mode, 
+  you can override this behaviour by creating a new logger with `debugOnly:false`. 
+
+  ```dart
+  final ConsoleLogger logger = ConsoleLogger(
+    filter: DefaultLogFilter(
+      LogLevel.verbose,
+      debugOnly: false,
+    ),
+  );
+  
+  Trace.registerLogger(logger);
+  ```
 
 
 ## Contribution
