@@ -1,5 +1,20 @@
 > This is a pre-release version of [Trace](https://github.com/nikosportolos/trace), so using it in a production environment is not recommended yet.
 
+## v0.0.4-prerelease
+
+### Dependencies
+
+- Bump test from 1.24.6 to 1.24.7 ([#48](https://github.com/nikosportolos/trace/pull/48))
+- Bump tachyon from 0.0.9 to 0.1.0 ([#49](https://github.com/nikosportolos/trace/pull/49))
+- Bump mocktail from 1.0.0 to 1.0.1 ([#50](https://github.com/nikosportolos/trace/pull/50))
+- Bump data_class_plugin from 1.0.5 to 1.1.0 ([#52](https://github.com/nikosportolos/trace/pull/52))
+- Bump ansix from 0.2.2 to 0.2.3 ([#53](https://github.com/nikosportolos/trace/pull/53))
+
+### CI/CD
+
+- Remove obsolete check from dependabot ([#51](https://github.com/nikosportolos/trace/pull/51))
+
+
 ## v0.0.3-prerelease
 
 ### Changes/Improvements
