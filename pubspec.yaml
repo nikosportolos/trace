@@ -11,7 +11,7 @@ environment:
   sdk: ">=3.1.0 <4.0.0"
 
 dependencies:
-  ansix: ^0.2.2
+  ansix: ^0.2.3
   collection: ^1.18.0
   data_class_plugin: ^1.1.0
   date_time_format: ^2.0.1
