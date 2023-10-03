@@ -12,9 +12,3 @@ updates:
     schedule:
       interval: "weekly"
     versioning-strategy: increase
-
-  - package-ecosystem: "pub"
-    directory: "./tools/export_docs"
-    schedule:
-      interval: "weekly"
-    versioning-strategy: increase
