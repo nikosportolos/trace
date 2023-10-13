@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer' as dev;
 
 import 'package:ansix/ansix.dart';
 import 'package:meta/meta.dart';
@@ -10,7 +9,10 @@ import 'package:trace/src/logger/logger.dart';
 class LoggerManager {
   LoggerManager() {
     try {
-      AnsiX.ensureSupportsAnsi();
+      AnsiX.ensureSupportsAnsi(
+        allowPrint: true,
+        colorFormat: ColorFormat.rgb,
+      );
     } on AnsiNotSupported catch (e) {
       warning(e.message);
     }
@@ -30,6 +32,17 @@ class LoggerManager {
       logger.level = value;
     }
     _level = value;
+  }
+
+  void toggleAnsiFormatting(final bool enabled) {
+    if (enabled && !AnsiX.isEnabled) {
+      AnsiX.enable();
+      return;
+    }
+
+    if (!enabled && AnsiX.isEnabled) {
+      AnsiX.disable();
+    }
   }
 
   /// Register a new [Logger]
@@ -59,7 +72,7 @@ class LoggerManager {
   /// No filters nor formatting is applied.
   void print(final Object? message) {
     for (final Logger logger in _loggers) {
-      logger.write(message);
+      logger.writeln(message);
     }
   }
 
@@ -182,31 +195,19 @@ class LoggerManager {
 
     log(
       LogEntry(
-        message: '$tabs${indicator.colored(foreground: color)} $message',
         level: logLevel,
         timestamp: DateTime.now(),
+        message: '$tabs${indicator.colored(foreground: color)} $message',
       ),
     );
   }
 
   /// Dispose all registered loggers
   Future<void> dispose() async {
-    try {
-      await _logController.close();
-    } catch (e, st) {
-      dev.log('Failed to dispose the stream controller\n'
-          '${e.toString()}\n'
-          '${st.toString()}');
-    }
+    await _logController.close();
 
     for (final Logger logger in _loggers) {
-      try {
-        await logger.dispose();
-      } catch (e, st) {
-        dev.log('Failed to dispose logger [${logger.runtimeType}]\n'
-            '${e.toString()}\n'
-            '${st.toString()}');
-      }
+      await logger.dispose();
     }
   }
 }

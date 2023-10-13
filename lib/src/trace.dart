@@ -17,6 +17,10 @@ abstract class Trace {
 
   static Map<int, ListItemTheme> listItemThemeMap = ListItemTheme.$defaultTheme;
 
+  static void toggleAnsiFormatting(final bool enabled) {
+    _manager.toggleAnsiFormatting(enabled);
+  }
+
   /// Register a new logger
   static void registerLogger(final Logger logger) => _manager.registerLogger(logger);
 

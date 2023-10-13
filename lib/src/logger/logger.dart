@@ -14,7 +14,7 @@ abstract class Logger {
 
   void log(final LogEntry entry);
 
-  void write(final Object? message);
+  void writeln(final Object? message);
 
   Future<void> dispose();
 }

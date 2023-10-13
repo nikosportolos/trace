@@ -20,11 +20,17 @@ class MessageFormatter extends LogSectionFormatter {
     }
 
     final StringBuffer buffer = StringBuffer();
-    buffer.write(entry.message);
+
+    if (entry.message != null) {
+      buffer.write(entry.message);
+    }
 
     if (entry.error != null && showError) {
-      buffer.writeln();
-      buffer.writeSpaces(theme.stacktraceIndent);
+      if (entry.message != null) {
+        buffer
+          ..writeln()
+          ..writeSpaces(theme.stacktraceIndent);
+      }
       buffer.write(entry.error);
     }
 

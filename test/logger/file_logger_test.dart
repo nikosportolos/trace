@@ -41,7 +41,7 @@ void main() {
       expect(filter.canLog(entry), true);
 
       logger.log(entry);
-      logger.write('testing writeln');
+      logger.writeln('testing writeln');
 
       final List<FileSystemEntity> files = logDirectory.listSync(recursive: true);
       expect(files.length, 1);

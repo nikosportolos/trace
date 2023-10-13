@@ -1,6 +1,5 @@
 import 'dart:io' if (dart.library.html) 'dart:html';
 
-import 'package:ansix/ansix.dart';
 import 'package:path/path.dart';
 import 'package:trace/src/core/extensions.dart';
 import 'package:trace/src/formatter/theme/theme.dart';
@@ -15,22 +14,13 @@ class FileLogger extends IoLogger {
     final String? path,
     final String? filename,
     final LoggerTheme? theme,
-    super.filter,
     super.level,
+    super.filter,
   }) : super(
-          ioSink: File(_getLogPath(path, filename)).safeOpen(),
+          allowAnsi: false,
           theme: theme ?? LoggerTheme(),
+          ioSink: File(_getLogPath(path, filename)).safeOpen(),
         );
-
-  @override
-  void print(final Object? message) {
-    super.print(message.toString().unformatted);
-  }
-
-  @override
-  void write(final Object? message) {
-    super.write(message.toString().unformatted);
-  }
 
   static String _getLogPath(
     final String? path,
@@ -38,7 +28,7 @@ class FileLogger extends IoLogger {
   ) {
     late final String logPath;
 
-    if (_isWeb || (path == null || path.isEmpty || path == '.')) {
+    if ((path == null || path.isEmpty || path == '.')) {
       logPath = join(Directory.current.path, 'logs');
     } else {
       logPath = path;
@@ -59,14 +49,6 @@ class FileLogger extends IoLogger {
     return '${now.year}$month${day}_$hour$minute$second.log';
   }
 }
-
-bool get _isWeb =>
-    !Platform.isAndroid &&
-    !Platform.isIOS &&
-    !Platform.isMacOS &&
-    !Platform.isWindows &&
-    !Platform.isFuchsia &&
-    !Platform.isLinux;
 
 extension on File {
   IOSink safeOpen() {

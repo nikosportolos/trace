@@ -21,8 +21,21 @@ void main() {
     });
 
     test('print [$level]', () {
-      final LogEntry entry = LogEntry.create(level: level, message: message);
-      logger.log(entry);
+      final String output = testPrintOutput(() {
+        final LogEntry entry = LogEntry.create(level: level, message: message);
+        logger.log(entry);
+      });
+
+      expect(output, isEmpty);
+    });
+
+    test('print [$level]', () {
+      final String output = testPrintOutput(() {
+        final LogEntry entry = LogEntry.create(level: level, message: message);
+        logger.writeln(entry);
+      });
+
+      expect(output, isEmpty);
     });
 
     test('theme', () {

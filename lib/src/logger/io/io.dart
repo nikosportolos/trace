@@ -4,20 +4,22 @@ import 'package:ansix/ansix.dart';
 import 'package:trace/src/core/core.dart';
 import 'package:trace/src/filter/filters.dart';
 import 'package:trace/src/formatter/theme/theme.dart';
+import 'package:trace/src/logger/io/writer.dart';
 import 'package:trace/src/logger/logger.dart';
 
 /// **IoLogger**
 ///
 /// A [Logger] interface that uses an input [IOSink] to log messages.
-abstract class IoLogger implements Logger {
+class IoLogger implements Logger {
   IoLogger({
-    required final IOSink ioSink,
+    final IOSink? ioSink,
     final LogFilter? filter,
     this.level = LogLevel.verbose,
     final LoggerTheme? theme,
-  })  : _sink = ioSink,
+    final bool allowAnsi = true,
+  })  : theme = theme ?? LoggerTheme(),
         filter = filter ?? DefaultLogFilter(level),
-        theme = theme ?? LoggerTheme();
+        writer = SinkWriter.create(ioSink, allowAnsi);
 
   @override
   final LogFilter filter;
@@ -25,10 +27,10 @@ abstract class IoLogger implements Logger {
   @override
   LogLevel level;
 
-  final IOSink _sink;
-
   @override
   final LoggerTheme theme;
+
+  final SinkWriter writer;
 
   @override
   void log(final LogEntry entry) {
@@ -39,25 +41,20 @@ abstract class IoLogger implements Logger {
     for (final LogSection section in theme.sections) {
       final String? text = theme.sectionThemeMap[section]?.formatter.format(theme, entry);
       if (text != null) {
-        print(text);
+        writer.write(text);
       }
     }
 
-    print(AnsiEscapeCodes.newLine);
-  }
-
-  print(final Object? message) {
-    _sink.write(message);
+    writer.write(AnsiEscapeCodes.newLine);
   }
 
   @override
-  void write(final Object? message) {
-    _sink.writeln(message);
+  writeln(final Object? message) {
+    writer.writeln(message);
   }
 
   @override
   Future<void> dispose() async {
-    await _sink.flush();
-    await _sink.close();
+    await writer.dispose();
   }
 }

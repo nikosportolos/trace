@@ -1,16 +1,12 @@
-import 'package:trace/src/formatter/theme/theme.dart';
-import 'package:trace/src/logger/logger.dart';
-import 'package:trace/src/logger/web/web.dart';
+import 'package:trace/src/logger/web/io.dart';
 
 /// **ConsoleLogger**
 ///
 /// A [Logger] that prints messages on the attached terminal.
-class ConsoleLogger extends WebLogger {
+class ConsoleLogger extends IoLogger {
   ConsoleLogger({
-    super.filter,
     super.level,
-    final LoggerTheme? theme,
-  }) : super(
-          theme: theme ?? LoggerTheme(colorMap: LoggerTheme.defaultColorMap),
-        );
+    super.theme,
+    super.filter,
+  });
 }
