@@ -22,7 +22,7 @@ class SilentLogger implements Logger {
   void log(final LogEntry entry) {}
 
   @override
-  void write(final Object? message) {}
+  void writeln(final Object? message) {}
 
   @override
   Future<void> dispose() async {}

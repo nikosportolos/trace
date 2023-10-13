@@ -1,20 +1,20 @@
-// ignore_for_file: avoid_print
-
+import 'package:ansix/ansix.dart';
 import 'package:trace/src/core/core.dart';
-import 'package:trace/src/filter/filters.dart';
-import 'package:trace/src/formatter/theme/theme.dart';
+import 'package:trace/src/filter/default.dart';
+import 'package:trace/src/filter/filter.dart';
+import 'package:trace/src/formatter/formatter.dart';
 import 'package:trace/src/logger/logger.dart';
 
 /// **IoLogger**
 ///
-/// A [Logger] interface used on Flutter Web apps.
-abstract class WebLogger implements Logger {
-  WebLogger({
-    final LogFilter? filter,
+/// A [Logger] that prints messages on the attached terminal.
+class IoLogger implements Logger {
+  IoLogger({
     this.level = LogLevel.verbose,
     final LoggerTheme? theme,
-  })  : filter = filter ?? DefaultLogFilter(level),
-        theme = theme ?? LoggerTheme();
+    final LogFilter? filter,
+  })  : theme = theme ?? LoggerTheme(colorMap: LoggerTheme.defaultColorMap),
+        filter = filter ?? DefaultLogFilter(level);
 
   @override
   final LogFilter filter;
@@ -40,12 +40,12 @@ abstract class WebLogger implements Logger {
       }
     }
 
-    write(buffer.toString());
+    writeln(buffer.toString());
   }
 
   @override
-  void write(final Object? message) {
-    print(message);
+  void writeln(final Object? message) {
+    AnsiX.print(message);
   }
 
   @override
