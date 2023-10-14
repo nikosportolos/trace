@@ -39,7 +39,8 @@ class IoLogger implements Logger {
     }
 
     for (final LogSection section in theme.sections) {
-      final String? text = theme.sectionThemeMap[section]?.formatter.format(theme, entry);
+      final String? text =
+          theme.sectionThemeMap[section]?.formatter.format(theme, entry);
       if (text != null) {
         writer.write(text);
       }

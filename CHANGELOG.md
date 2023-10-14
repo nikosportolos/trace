@@ -1,4 +1,9 @@
-> This is a pre-release version of [Trace](https://github.com/nikosportolos/trace), so using it in a production environment is not recommended yet.
+> This is a pre-release version of [Trace](https://pub.dev/packages/trace), so using it in a production environment is not recommended yet.
+
+## v0.0.5-prerelease
+
+
+
 
 ## v0.0.4-prerelease
 

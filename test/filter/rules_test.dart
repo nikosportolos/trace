@@ -19,7 +19,8 @@ void main() {
         test(level.name, () {
           final FilterRule rule = FilterRule.level(level);
           for (final LogLevel entryLevel in LogLevel.values) {
-            final bool shouldLog = level != LogLevel.none && level <= entryLevel;
+            final bool shouldLog =
+                level != LogLevel.none && level <= entryLevel;
             expect(rule.canLog(LogEntry.create(level: entryLevel)), shouldLog);
           }
         });
@@ -30,7 +31,8 @@ void main() {
       final FilterRule rule = FilterRule.error(MockException);
 
       expect(
-        rule.canLog(LogEntry.create(level: LogLevel.error, error: MockException())),
+        rule.canLog(
+            LogEntry.create(level: LogLevel.error, error: MockException())),
         true,
       );
 

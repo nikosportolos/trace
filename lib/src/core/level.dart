@@ -56,7 +56,16 @@ class LogLevel implements Comparable<LogLevel> {
   /// could cause the system or program to fail or crash.
   static const LogLevel fatal = LogLevel._('fatal', 7);
 
-  static const List<LogLevel> values = <LogLevel>[none, verbose, debug, info, success, warning, error, fatal];
+  static const List<LogLevel> values = <LogLevel>[
+    none,
+    verbose,
+    debug,
+    info,
+    success,
+    warning,
+    error,
+    fatal
+  ];
 
   @override
   bool operator ==(Object other) => other is LogLevel && value == other.value;

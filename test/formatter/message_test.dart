@@ -13,8 +13,11 @@ void main() {
   final DateTime timestamp = DateTime.now();
   final String tab = ' ' * defaultTheme.stacktraceIndent;
   final StackTrace stacktrace = StackTrace.current;
-  final String formattedStacktrace =
-      stacktrace.toString().split(AnsiEscapeCodes.newLine).map((String s) => '$tab$s').join(AnsiEscapeCodes.newLine);
+  final String formattedStacktrace = stacktrace
+      .toString()
+      .split(AnsiEscapeCodes.newLine)
+      .map((String s) => '$tab$s')
+      .join(AnsiEscapeCodes.newLine);
 
   group('MessageFormatter', () {
     group('Default LoggerTheme', () {

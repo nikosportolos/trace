@@ -15,7 +15,9 @@ class MessageFormatter extends LogSectionFormatter {
 
   @override
   String format(final LoggerTheme theme, final LogEntry entry) {
-    if (entry.message == null && entry.error == null && entry.stacktrace == null) {
+    if (entry.message == null &&
+        entry.error == null &&
+        entry.stacktrace == null) {
       return '';
     }
 

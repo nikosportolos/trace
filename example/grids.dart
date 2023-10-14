@@ -19,7 +19,12 @@ void main() {
     ...movies.mapIndexed((int i, Movie m) {
       return <Object>[i + 1, m.title, m.releaseYear, m.rate];
     }).toList(growable: false),
-    <Object?>['Average', '', '', movies.map((Movie m) => m.rate).toList(growable: false).average],
+    <Object?>[
+      'Average',
+      '',
+      '',
+      movies.map((Movie m) => m.rate).toList(growable: false).average
+    ],
   ];
 
   Trace.info('This is a random data grid');
