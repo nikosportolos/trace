@@ -53,7 +53,8 @@ class _$MovieImpl extends Movie {
   String toString() {
     String toStringOutput = 'Movie{<optimized out>}';
     assert(() {
-      toStringOutput = 'Movie@<$hexIdentity>{title: $title, releaseYear: $releaseYear, rate: $rate}';
+      toStringOutput =
+          'Movie@<$hexIdentity>{title: $title, releaseYear: $releaseYear, rate: $rate}';
       return true;
     }());
     return toStringOutput;
@@ -110,7 +111,8 @@ class _MovieCopyWithProxyImpl implements _MovieCopyWithProxy {
 }
 
 sealed class $MovieCopyWithProxyChain<$Result> {
-  factory $MovieCopyWithProxyChain(final Movie value, final $Result Function(Movie update) chain) =
+  factory $MovieCopyWithProxyChain(
+          final Movie value, final $Result Function(Movie update) chain) =
       _MovieCopyWithProxyChainImpl<$Result>;
 
   $Result title(String newValue);
@@ -126,7 +128,8 @@ sealed class $MovieCopyWithProxyChain<$Result> {
   });
 }
 
-class _MovieCopyWithProxyChainImpl<$Result> implements $MovieCopyWithProxyChain<$Result> {
+class _MovieCopyWithProxyChainImpl<$Result>
+    implements $MovieCopyWithProxyChain<$Result> {
   _MovieCopyWithProxyChainImpl(this._value, this._chain);
 
   final Movie _value;

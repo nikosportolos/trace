@@ -35,14 +35,22 @@ void main() {
     });
 
     test('fromJson', () {
-      expect(LogLevel.fromJson(<String, dynamic>{'level': 'none'}), LogLevel.none);
-      expect(LogLevel.fromJson(<String, dynamic>{'level': 'verbose'}), LogLevel.verbose);
-      expect(LogLevel.fromJson(<String, dynamic>{'level': 'debug'}), LogLevel.debug);
-      expect(LogLevel.fromJson(<String, dynamic>{'level': 'info'}), LogLevel.info);
-      expect(LogLevel.fromJson(<String, dynamic>{'level': 'success'}), LogLevel.success);
-      expect(LogLevel.fromJson(<String, dynamic>{'level': 'warning'}), LogLevel.warning);
-      expect(LogLevel.fromJson(<String, dynamic>{'level': 'error'}), LogLevel.error);
-      expect(LogLevel.fromJson(<String, dynamic>{'level': 'fatal'}), LogLevel.fatal);
+      expect(
+          LogLevel.fromJson(<String, dynamic>{'level': 'none'}), LogLevel.none);
+      expect(LogLevel.fromJson(<String, dynamic>{'level': 'verbose'}),
+          LogLevel.verbose);
+      expect(LogLevel.fromJson(<String, dynamic>{'level': 'debug'}),
+          LogLevel.debug);
+      expect(
+          LogLevel.fromJson(<String, dynamic>{'level': 'info'}), LogLevel.info);
+      expect(LogLevel.fromJson(<String, dynamic>{'level': 'success'}),
+          LogLevel.success);
+      expect(LogLevel.fromJson(<String, dynamic>{'level': 'warning'}),
+          LogLevel.warning);
+      expect(LogLevel.fromJson(<String, dynamic>{'level': 'error'}),
+          LogLevel.error);
+      expect(LogLevel.fromJson(<String, dynamic>{'level': 'fatal'}),
+          LogLevel.fatal);
     });
   });
 }

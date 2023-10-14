@@ -14,7 +14,8 @@ void main() {
   const String message = 'This is an info message.';
   const LogLevel level = LogLevel.info;
 
-  final Directory logDirectory = Directory(join(Directory.current.path, 'test', 'logs'));
+  final Directory logDirectory =
+      Directory(join(Directory.current.path, 'test', 'logs'));
 
   final LogFilter filter = DefaultLogFilter(level);
   final IoLogger logger = FileLogger(
@@ -43,7 +44,8 @@ void main() {
       logger.log(entry);
       logger.writeln('testing writeln');
 
-      final List<FileSystemEntity> files = logDirectory.listSync(recursive: true);
+      final List<FileSystemEntity> files =
+          logDirectory.listSync(recursive: true);
       expect(files.length, 1);
 
       await Future<void>.delayed(const Duration(milliseconds: 25));
@@ -52,8 +54,10 @@ void main() {
       final String text = file.readAsStringSync();
 
       final DateTime now = DateTime.now();
-      final String timestamp = '${now.day.padded()}/${now.month.padded()}/${now.year}';
-      final String expected = '$timestamp        INFO      This is an info message.\ntesting writeln\n';
+      final String timestamp =
+          '${now.day.padded()}/${now.month.padded()}/${now.year}';
+      final String expected =
+          '$timestamp        INFO      This is an info message.\ntesting writeln\n';
 
       expect(text, expected);
     });

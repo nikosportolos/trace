@@ -38,7 +38,8 @@ class _$LogSectionThemeImpl extends LogSectionTheme {
   String toString() {
     String toStringOutput = 'LogSectionTheme{<optimized out>}';
     assert(() {
-      toStringOutput = 'LogSectionTheme@<$hexIdentity>{textTheme: $textTheme, formatter: $formatter}';
+      toStringOutput =
+          'LogSectionTheme@<$hexIdentity>{textTheme: $textTheme, formatter: $formatter}';
       return true;
     }());
     return toStringOutput;
@@ -59,18 +60,21 @@ abstract interface class _LogSectionThemeCopyWithProxy {
   });
 }
 
-class _LogSectionThemeCopyWithProxyImpl implements _LogSectionThemeCopyWithProxy {
+class _LogSectionThemeCopyWithProxyImpl
+    implements _LogSectionThemeCopyWithProxy {
   _LogSectionThemeCopyWithProxyImpl(this._value);
 
   final LogSectionTheme _value;
 
   @pragma('vm:prefer-inline')
   @override
-  LogSectionTheme textTheme(AnsiTextTheme newValue) => this(textTheme: newValue);
+  LogSectionTheme textTheme(AnsiTextTheme newValue) =>
+      this(textTheme: newValue);
 
   @pragma('vm:prefer-inline')
   @override
-  LogSectionTheme formatter(LogSectionFormatter newValue) => this(formatter: newValue);
+  LogSectionTheme formatter(LogSectionFormatter newValue) =>
+      this(formatter: newValue);
 
   @pragma('vm:prefer-inline')
   @override
@@ -86,8 +90,8 @@ class _LogSectionThemeCopyWithProxyImpl implements _LogSectionThemeCopyWithProxy
 }
 
 sealed class $LogSectionThemeCopyWithProxyChain<$Result> {
-  factory $LogSectionThemeCopyWithProxyChain(
-          final LogSectionTheme value, final $Result Function(LogSectionTheme update) chain) =
+  factory $LogSectionThemeCopyWithProxyChain(final LogSectionTheme value,
+          final $Result Function(LogSectionTheme update) chain) =
       _LogSectionThemeCopyWithProxyChainImpl<$Result>;
 
   $Result textTheme(AnsiTextTheme newValue);
@@ -100,7 +104,8 @@ sealed class $LogSectionThemeCopyWithProxyChain<$Result> {
   });
 }
 
-class _LogSectionThemeCopyWithProxyChainImpl<$Result> implements $LogSectionThemeCopyWithProxyChain<$Result> {
+class _LogSectionThemeCopyWithProxyChainImpl<$Result>
+    implements $LogSectionThemeCopyWithProxyChain<$Result> {
   _LogSectionThemeCopyWithProxyChainImpl(this._value, this._chain);
 
   final LogSectionTheme _value;
@@ -128,5 +133,6 @@ class _LogSectionThemeCopyWithProxyChainImpl<$Result> implements $LogSectionThem
 }
 
 extension $LogSectionThemeExtension on LogSectionTheme {
-  _LogSectionThemeCopyWithProxy get copyWith => _LogSectionThemeCopyWithProxyImpl(this);
+  _LogSectionThemeCopyWithProxy get copyWith =>
+      _LogSectionThemeCopyWithProxyImpl(this);
 }

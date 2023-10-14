@@ -2,7 +2,7 @@ file_generation_paths:
   - "lib/**"
   - "example/**"
 
-generated_file_line_length: 120
+generated_file_line_length: 80
 
 plugins:
   - data_class_plugin

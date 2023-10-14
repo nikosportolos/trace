@@ -151,7 +151,8 @@ class LoggerTheme {
 
   Map<LogSection, LogSectionTheme> get sectionThemeMap => _sectionThemeMap;
 
-  final Map<LogSection, LogSectionTheme> _sectionThemeMap = <LogSection, LogSectionTheme>{};
+  final Map<LogSection, LogSectionTheme> _sectionThemeMap =
+      <LogSection, LogSectionTheme>{};
 
   static final Map<LogLevel, AnsiColor> defaultColorMap = <LogLevel, AnsiColor>{
     LogLevel.none: AnsiColor.none,

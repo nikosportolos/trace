@@ -46,7 +46,8 @@ abstract class LogEntry {
   StackTrace? get stacktrace;
 
   /// Creates an instance of [LogEntry] from [json]
-  factory LogEntry.fromJson(Map<dynamic, dynamic> json) = _$LogEntryImpl.fromJson;
+  factory LogEntry.fromJson(Map<dynamic, dynamic> json) =
+      _$LogEntryImpl.fromJson;
 
   /// Converts [LogEntry] to a [Map] json
   Map<String, dynamic> toJson();

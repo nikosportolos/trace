@@ -31,16 +31,24 @@ class _$LogEntryImpl extends LogEntry {
   factory _$LogEntryImpl.fromJson(Map<dynamic, dynamic> json) {
     return _$LogEntryImpl(
       level: LogLevel.fromJson(json['level']),
-      timestamp: jsonConverterRegistrant.find(DateTime).fromJson(json['timestamp'], json, 'timestamp') as DateTime,
+      timestamp: jsonConverterRegistrant
+          .find(DateTime)
+          .fromJson(json['timestamp'], json, 'timestamp') as DateTime,
       message: json['message'] == null
           ? null
-          : jsonConverterRegistrant.find(Object).fromJson(json['message'], json, 'message') as Object,
+          : jsonConverterRegistrant
+              .find(Object)
+              .fromJson(json['message'], json, 'message') as Object,
       error: json['error'] == null
           ? null
-          : jsonConverterRegistrant.find(Object).fromJson(json['error'], json, 'error') as Object,
+          : jsonConverterRegistrant
+              .find(Object)
+              .fromJson(json['error'], json, 'error') as Object,
       stacktrace: json['stacktrace'] == null
           ? null
-          : jsonConverterRegistrant.find(StackTrace).fromJson(json['stacktrace'], json, 'stacktrace') as StackTrace,
+          : jsonConverterRegistrant
+              .find(StackTrace)
+              .fromJson(json['stacktrace'], json, 'stacktrace') as StackTrace,
     );
   }
 
@@ -49,9 +57,15 @@ class _$LogEntryImpl extends LogEntry {
     return <String, dynamic>{
       'level': level.toJson(),
       'timestamp': jsonConverterRegistrant.find(DateTime).toJson(timestamp),
-      'message': message == null ? null : jsonConverterRegistrant.find(Object).toJson(message),
-      'error': error == null ? null : jsonConverterRegistrant.find(Object).toJson(error),
-      'stacktrace': stacktrace == null ? null : jsonConverterRegistrant.find(StackTrace).toJson(stacktrace),
+      'message': message == null
+          ? null
+          : jsonConverterRegistrant.find(Object).toJson(message),
+      'error': error == null
+          ? null
+          : jsonConverterRegistrant.find(Object).toJson(error),
+      'stacktrace': stacktrace == null
+          ? null
+          : jsonConverterRegistrant.find(StackTrace).toJson(stacktrace),
     };
   }
 
@@ -151,15 +165,21 @@ class _LogEntryCopyWithProxyImpl implements _LogEntryCopyWithProxy {
     return _$LogEntryImpl(
       level: level ?? _value.level,
       timestamp: timestamp ?? _value.timestamp,
-      message: identical(message, const Object()) ? _value.message : message,
-      error: identical(error, const Object()) ? _value.error : error,
-      stacktrace: identical(stacktrace, const Object()) ? _value.stacktrace : (stacktrace as StackTrace?),
+      message: identical(message, const Object())
+          ? _value.message
+          : (message as Object?),
+      error:
+          identical(error, const Object()) ? _value.error : (error as Object?),
+      stacktrace: identical(stacktrace, const Object())
+          ? _value.stacktrace
+          : (stacktrace as StackTrace?),
     );
   }
 }
 
 sealed class $LogEntryCopyWithProxyChain<$Result> {
-  factory $LogEntryCopyWithProxyChain(final LogEntry value, final $Result Function(LogEntry update) chain) =
+  factory $LogEntryCopyWithProxyChain(
+          final LogEntry value, final $Result Function(LogEntry update) chain) =
       _LogEntryCopyWithProxyChainImpl<$Result>;
 
   $Result level(LogLevel newValue);
@@ -181,7 +201,8 @@ sealed class $LogEntryCopyWithProxyChain<$Result> {
   });
 }
 
-class _LogEntryCopyWithProxyChainImpl<$Result> implements $LogEntryCopyWithProxyChain<$Result> {
+class _LogEntryCopyWithProxyChainImpl<$Result>
+    implements $LogEntryCopyWithProxyChain<$Result> {
   _LogEntryCopyWithProxyChainImpl(this._value, this._chain);
 
   final LogEntry _value;
@@ -219,9 +240,14 @@ class _LogEntryCopyWithProxyChainImpl<$Result> implements $LogEntryCopyWithProxy
     return _chain(_$LogEntryImpl(
       level: level ?? _value.level,
       timestamp: timestamp ?? _value.timestamp,
-      message: identical(message, const Object()) ? _value.message : message,
-      error: identical(error, const Object()) ? _value.error : error,
-      stacktrace: identical(stacktrace, const Object()) ? _value.stacktrace : (stacktrace as StackTrace?),
+      message: identical(message, const Object())
+          ? _value.message
+          : (message as Object?),
+      error:
+          identical(error, const Object()) ? _value.error : (error as Object?),
+      stacktrace: identical(stacktrace, const Object())
+          ? _value.stacktrace
+          : (stacktrace as StackTrace?),
     ));
   }
 }

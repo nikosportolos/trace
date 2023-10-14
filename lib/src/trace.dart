@@ -22,16 +22,20 @@ abstract class Trace {
   }
 
   /// Register a new logger
-  static void registerLogger(final Logger logger) => _manager.registerLogger(logger);
+  static void registerLogger(final Logger logger) =>
+      _manager.registerLogger(logger);
 
   /// Register a list of loggers
-  static void registerLoggers(final List<Logger> loggers) => loggers.forEach(_manager.registerLogger);
+  static void registerLoggers(final List<Logger> loggers) =>
+      loggers.forEach(_manager.registerLogger);
 
   /// Unregister an existing logger
-  static void unregisterLogger(final Logger logger) => _manager.unregisterLogger(logger);
+  static void unregisterLogger(final Logger logger) =>
+      _manager.unregisterLogger(logger);
 
   /// Unregister a list of loggers
-  static void unregisterLoggers(final List<Logger> loggers) => loggers.forEach(_manager.unregisterLogger);
+  static void unregisterLoggers(final List<Logger> loggers) =>
+      loggers.forEach(_manager.unregisterLogger);
 
   /// Log a message with no filters nor formatting
   ///
@@ -51,15 +55,18 @@ abstract class Trace {
   static void success(final Object? message) => _manager.success(message);
 
   /// Log warning message
-  static void warning(final Object? message, [final Object? error, final StackTrace? stackTrace]) =>
+  static void warning(final Object? message,
+          [final Object? error, final StackTrace? stackTrace]) =>
       _manager.warning(message, error, stackTrace);
 
   /// Log an error message
-  static void error(final Object? message, [final Object? error, final StackTrace? stackTrace]) =>
+  static void error(final Object? message,
+          [final Object? error, final StackTrace? stackTrace]) =>
       _manager.error(message, error, stackTrace);
 
   /// Log a fatal error messages
-  static void fatal(final Object? message, [final Object? error, final StackTrace? stackTrace]) =>
+  static void fatal(final Object? message,
+          [final Object? error, final StackTrace? stackTrace]) =>
       _manager.fatal(message, error, stackTrace);
 
   static void printListItem(
@@ -68,7 +75,8 @@ abstract class Trace {
     final LogLevel logLevel = LogLevel.info,
     final Map<int, ListItemTheme>? map,
   }) =>
-      _manager.printListItem(message, level: level, logLevel: logLevel, map: map ?? listItemThemeMap);
+      _manager.printListItem(message,
+          level: level, logLevel: logLevel, map: map ?? listItemThemeMap);
 
   /// Dispose all registered loggers
   static Future<void> dispose() async => await _manager.dispose();
