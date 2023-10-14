@@ -4,6 +4,7 @@ import 'package:ansix/ansix.dart';
 import 'package:path/path.dart';
 import 'package:test/test.dart';
 import 'package:trace/src/core/entry.dart';
+import 'package:trace/src/core/extensions.dart';
 import 'package:trace/src/core/level.dart';
 import 'package:trace/src/filter/filters.dart';
 import 'package:trace/src/formatter/theme/theme.dart';
@@ -51,8 +52,8 @@ void main() {
       final String text = file.readAsStringSync();
 
       final DateTime now = DateTime.now();
-      final String timestamp = '${now.day}/${now.month}/${now.year}';
-      final String expected = '$timestamp         INFO      This is an info message.\ntesting writeln\n';
+      final String timestamp = '${now.day.padded()}/${now.month.padded()}/${now.year}';
+      final String expected = '$timestamp        INFO      This is an info message.\ntesting writeln\n';
 
       expect(text, expected);
     });
