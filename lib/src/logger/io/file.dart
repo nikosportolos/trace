@@ -2,6 +2,7 @@ import 'dart:io' if (dart.library.html) 'dart:html';
 
 import 'package:ansix/ansix.dart';
 import 'package:path/path.dart';
+import 'package:trace/src/core/extensions.dart';
 import 'package:trace/src/formatter/theme/theme.dart';
 import 'package:trace/src/logger/io/io.dart';
 import 'package:trace/src/logger/logger.dart';
@@ -75,8 +76,4 @@ extension on File {
 
     return openWrite();
   }
-}
-
-extension on int {
-  String padded() => toString().padLeft(2, '0');
 }
