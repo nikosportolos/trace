@@ -40,6 +40,7 @@
       - [Rules](#rules)
     - [Theme](#theme)
 - [Examples](#examples)
+- [Web support](#web-support)
 - [Contribution](#contribution)
 - [Changelog](#changelog)
 
@@ -304,6 +305,28 @@ void main() async {
 
 
 You can also check the [example](https://github.com/nikosportolos/trace/tree/main/example) folder for more samples.
+
+
+## Web support
+
+**Trace** runs also on Flutter web applications! 🌍🚀
+
+<a href="https://raw.githubusercontent.com/nikosportolos/trace/main/assets/images/web-example.png" target="_blank">
+  <img src="https://raw.githubusercontent.com/nikosportolos/trace/main/assets/images/web-example.png" width="800" alt="web-example">
+</a>
+
+[AnsiX](https://pub.dev/packages/ansix), which is the core library for ANSI colors and styles,
+will automatically detect the web browser and deactivate all formatting
+when the browser doesn't support ANSI escape codes.
+
+The supported web browsers are:
+**Chrome** _(and other Chromium-based browsers)_, **Opera** and **Edge**.
+On all other browsers all text will still be printed, but with no ANSI formatting.
+
+Please note that the `FileLogger` is no-operational when running on a web application.
+
+> Read more: https://github.com/nikosportolos/ansix/blob/main/.documentation/features/web_support.md#web-support
+
 
 ## FAQ
 

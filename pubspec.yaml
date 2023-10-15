@@ -1,7 +1,6 @@
 name: trace
 description: Trace is a minimalistic logger for your Dart & Flutter projects, that uses AnsiX to print customizable messages in terminal and export log files.
-version: 0.0.4-prerelease
-publish_to: 'none'
+version: 0.0.5-prerelease
 
 homepage: https://github.com/nikosportolos/trace
 repository: https://github.com/nikosportolos/trace
@@ -28,8 +27,12 @@ dev_dependencies:
   test: ^1.24.8
 
 screenshots:
-  - description: 'This is a sample usage of Trace'
+  - description: 'This is a sample usage of Trace using ConsoleLogger'
     path: assets/images/examples.png
+  - description: 'This is a sample usage of Trace using FileLogger'
+    path: assets/images/file-example.png
+  - description: 'This is a sample usage of Trace on a web app'
+    path: assets/images/web-example.png
   - description: 'This is a sample usage of a bulleted list'
     path: assets/images/list-example.png
 

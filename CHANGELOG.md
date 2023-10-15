@@ -1,8 +1,21 @@
-> This is a pre-release version of [Trace](https://pub.dev/packages/trace), so using it in a production environment is not recommended yet.
+> This is a pre-release version of [Trace](https://github.com/nikosportolos/trace), so using it in a production environment is not recommended yet.
 
 ## v0.0.5-prerelease
 
+### Changes/Improvements
 
+- Enhance web support ([#62](https://github.com/nikosportolos/trace/issues/62))
+
+### Dependencies
+
+- Bump meta from 1.10.0 to 1.11.0 ([#56](https://github.com/nikosportolos/trace/issues/56))
+- Bump test from 1.24.7 to 1.24.8 ([#57](https://github.com/nikosportolos/trace/issues/57))
+- Bump ansix from 0.2.3 to 0.3.0 ([#63](https://github.com/nikosportolos/trace/issues/63))
+
+### Misc
+
+- Decrease project line length to 80 ([#55](https://github.com/nikosportolos/trace/issues/55))
+- Fix timestamp in FileLogger tests ([#59](https://github.com/nikosportolos/trace/issues/59))
 
 
 ## v0.0.4-prerelease
