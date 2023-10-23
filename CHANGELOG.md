@@ -1,5 +1,18 @@
 > This is a pre-release version of [Trace](https://github.com/nikosportolos/trace), so using it in a production environment is not recommended yet.
 
+## v0.0.6-prerelease
+
+### Dependencies
+
+- Bump lints from 2.1.1 to 3.0.0 ([#69](https://github.com/nikosportolos/trace/pull/69))
+- Bump ansix from 0.3.0 to 0.3.1 ([#73](https://github.com/nikosportolos/trace/pull/73))
+
+### CI/CD
+
+- Bump actions/checkout from 4.1.0 to 4.1.1 ([#71](https://github.com/nikosportolos/trace/pull/71))
+- Bump nikosportolos/dart_package from 0.2.0 to 0.2.1 ([#72](https://github.com/nikosportolos/trace/pull/72))
+
+
 ## v0.0.5-prerelease
 
 ### Changes/Improvements
