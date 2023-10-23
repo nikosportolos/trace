@@ -48,7 +48,7 @@ void main() {
           logDirectory.listSync(recursive: true);
       expect(files.length, 1);
 
-      await Future<void>.delayed(const Duration(milliseconds: 25));
+      await logger.dispose();
 
       final File file = File(files.first.path);
       final String text = file.readAsStringSync();
