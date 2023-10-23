@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:trace/src/core/core.dart';
 import 'package:trace/src/logger/logger.dart';
+import 'package:trace/src/progress/progress_indicator.dart';
 
 class LoggerManager {
   LoggerManager() {
@@ -203,8 +204,22 @@ class LoggerManager {
     );
   }
 
+  void startProgress(final ProgressIndicator progress) {
+    for (final Logger logger in _loggers) {
+      logger.startProgress(progress);
+    }
+  }
+
+  void stopProgress() {
+    for (final Logger logger in _loggers) {
+      logger.stopProgress();
+    }
+  }
+
   /// Dispose all registered loggers
   Future<void> dispose() async {
+    stopProgress();
+
     await _logController.close();
 
     for (final Logger logger in _loggers) {

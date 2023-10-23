@@ -2,6 +2,7 @@ import 'package:trace/src/core/core.dart';
 import 'package:trace/src/filter/filters.dart';
 import 'package:trace/src/formatter/theme/theme.dart';
 import 'package:trace/src/logger/logger.dart';
+import 'package:trace/src/progress/progress_indicator.dart';
 
 /// **SilentLogger**
 ///
@@ -11,6 +12,9 @@ class SilentLogger implements Logger {
 
   @override
   LogLevel get level => LogLevel.none;
+
+  @override
+  LoggerTheme get theme => LoggerTheme();
 
   @override
   final LogFilter filter;
@@ -25,8 +29,11 @@ class SilentLogger implements Logger {
   void writeln(final Object? message) {}
 
   @override
-  Future<void> dispose() async {}
+  void startProgress(final ProgressIndicator progress) {}
 
   @override
-  LoggerTheme get theme => LoggerTheme();
+  void stopProgress() {}
+
+  @override
+  Future<void> dispose() async {}
 }

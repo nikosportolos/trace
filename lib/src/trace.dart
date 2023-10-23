@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:trace/src/core/core.dart';
 import 'package:trace/src/logger/logger.dart';
 import 'package:trace/src/manager.dart';
+import 'package:trace/src/progress/progress_indicator.dart';
 
 abstract class Trace {
   static final LoggerManager _manager = LoggerManager();
@@ -69,6 +70,7 @@ abstract class Trace {
           [final Object? error, final StackTrace? stackTrace]) =>
       _manager.fatal(message, error, stackTrace);
 
+  /// Prints a list item with the given indentation level and styling
   static void printListItem(
     final Object? message, {
     final int level = 0,
@@ -77,6 +79,13 @@ abstract class Trace {
   }) =>
       _manager.printListItem(message,
           level: level, logLevel: logLevel, map: map ?? listItemThemeMap);
+
+  /// Initiates the given progress indicator
+  static void startProgress(final ProgressIndicator progress) =>
+      _manager.startProgress(progress);
+
+  /// Stops the progress indicator
+  static void stopProgress() => _manager.stopProgress();
 
   /// Dispose all registered loggers
   static Future<void> dispose() async => await _manager.dispose();

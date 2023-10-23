@@ -4,6 +4,7 @@ import 'package:trace/src/filter/default.dart';
 import 'package:trace/src/filter/filter.dart';
 import 'package:trace/src/formatter/formatter.dart';
 import 'package:trace/src/logger/logger.dart';
+import 'package:trace/src/progress/progress_indicator.dart';
 
 /// **IoLogger**
 ///
@@ -48,6 +49,12 @@ class IoLogger implements Logger {
   void writeln(final Object? message) {
     AnsiX.print(message);
   }
+
+  @override
+  void startProgress(final ProgressIndicator progress) {}
+
+  @override
+  void stopProgress() {}
 
   @override
   Future<void> dispose() async {}

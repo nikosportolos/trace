@@ -6,6 +6,7 @@ import 'package:trace/src/filter/filters.dart';
 import 'package:trace/src/formatter/theme/theme.dart';
 import 'package:trace/src/logger/io/writer.dart';
 import 'package:trace/src/logger/logger.dart';
+import 'package:trace/src/progress/progress_indicator.dart';
 
 /// **IoLogger**
 ///
@@ -32,6 +33,8 @@ class IoLogger implements Logger {
 
   final SinkWriter writer;
 
+  ProgressIndicator? _progressIndicator;
+
   @override
   void log(final LogEntry entry) {
     if (!filter.canLog(entry)) {
@@ -53,6 +56,13 @@ class IoLogger implements Logger {
   writeln(final Object? message) {
     writer.writeln(message);
   }
+
+  @override
+  void startProgress(final ProgressIndicator progress) =>
+      _progressIndicator = progress;
+
+  @override
+  void stopProgress() => _progressIndicator = null;
 
   @override
   Future<void> dispose() async {
