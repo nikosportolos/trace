@@ -1,5 +1,6 @@
 // AUTO GENERATED - DO NOT MODIFY
 // ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter, deprecated_member_use_from_same_package
 // coverage:ignore-file
 
 part of 'entry.dart';
@@ -165,8 +166,11 @@ class _LogEntryCopyWithProxyImpl implements _LogEntryCopyWithProxy {
     return _$LogEntryImpl(
       level: level ?? _value.level,
       timestamp: timestamp ?? _value.timestamp,
-      message: identical(message, const Object()) ? _value.message : message,
-      error: identical(error, const Object()) ? _value.error : error,
+      message: identical(message, const Object())
+          ? _value.message
+          : (message as Object?),
+      error:
+          identical(error, const Object()) ? _value.error : (error as Object?),
       stacktrace: identical(stacktrace, const Object())
           ? _value.stacktrace
           : (stacktrace as StackTrace?),
@@ -237,8 +241,11 @@ class _LogEntryCopyWithProxyChainImpl<$Result>
     return _chain(_$LogEntryImpl(
       level: level ?? _value.level,
       timestamp: timestamp ?? _value.timestamp,
-      message: identical(message, const Object()) ? _value.message : message,
-      error: identical(error, const Object()) ? _value.error : error,
+      message: identical(message, const Object())
+          ? _value.message
+          : (message as Object?),
+      error:
+          identical(error, const Object()) ? _value.error : (error as Object?),
       stacktrace: identical(stacktrace, const Object())
           ? _value.stacktrace
           : (stacktrace as StackTrace?),
