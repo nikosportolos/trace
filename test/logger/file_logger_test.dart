@@ -27,7 +27,7 @@ void main() {
         LogSection.level,
         LogSection.message,
       ],
-      timestampFormat: 'j/n/Y',
+      timestampFormat: 'd/m/Y',
     ),
   );
 
