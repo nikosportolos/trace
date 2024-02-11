@@ -50,6 +50,10 @@ R? runTraced<R>(
   }
 }
 
-void _onError(final Object error, final StackTrace stack) {
-  Trace.fatal('📢 An unhandled error was traced.', error, stack);
+void _onError(final Object error, final StackTrace stackTrace) {
+  Trace.fatal(
+    '📢 An unhandled error was traced.',
+    error: error,
+    stackTrace: stackTrace,
+  );
 }

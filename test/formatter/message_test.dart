@@ -1,4 +1,3 @@
-import 'package:ansix/ansix.dart';
 import 'package:test/test.dart';
 import 'package:trace/src/core/core.dart';
 import 'package:trace/src/formatter/formatter.dart';
@@ -12,12 +11,39 @@ void main() {
   const LogLevel level = LogLevel.verbose;
   final DateTime timestamp = DateTime.now();
   final String tab = ' ' * defaultTheme.stacktraceIndent;
-  final StackTrace stacktrace = StackTrace.current;
-  final String formattedStacktrace = stacktrace
-      .toString()
-      .split(AnsiEscapeCodes.newLine)
-      .map((String s) => '$tab$s')
-      .join(AnsiEscapeCodes.newLine);
+
+  final Map<String, dynamic> data = <String, dynamic>{
+    'user_id': 123,
+    'email': 'tester@test.com',
+    'is_admin': true,
+  };
+  const String printedData = '''
+
+    {
+      "user_id": 123,
+      "email": "tester@test.com",
+      "is_admin": true
+    }''';
+
+  const String mockStacktrace = '''
+#0      main (file:///D:/trace/test/formatter/message_test.dart:28:44)
+#1      _rootRun (dart:async/zone.dart:1399:13)
+#2      _CustomZone.run (dart:async/zone.dart:1301:19)
+#3      _runZoned (dart:async/zone.dart:1804:10)
+#4      runZoned (dart:async/zone.dart:1747:10)
+#5      Declarer.declare (package:test_api/src/backend/declarer.dart:169:7)
+#6      RemoteListener.start.<anonymous closure>.<anonymous closure> (package:test_api/src/backend/remote_listener.dart:120:24)
+<asynchronous suspension>''';
+
+  const String formattedStacktrace = '''
+    #0      main (file:///D:/trace/test/formatter/message_test.dart:28:44)
+    #1      _rootRun (dart:async/zone.dart:1399:13)
+    #2      _CustomZone.run (dart:async/zone.dart:1301:19)
+    #3      _runZoned (dart:async/zone.dart:1804:10)
+    #4      runZoned (dart:async/zone.dart:1747:10)
+    #5      Declarer.declare (package:test_api/src/backend/declarer.dart:169:7)
+    #6      RemoteListener.start.<anonymous closure>.<anonymous closure> (package:test_api/src/backend/remote_listener.dart:120:24)
+    <asynchronous suspension>''';
 
   group('MessageFormatter', () {
     group('Default LoggerTheme', () {
@@ -28,6 +54,20 @@ void main() {
             LogEntry(message: message, level: level, timestamp: timestamp),
           ),
           message,
+        );
+      });
+
+      test('Format data', () {
+        expect(
+          formatter.format(
+            defaultTheme,
+            LogEntry(
+              level: level,
+              timestamp: timestamp,
+              data: data,
+            ),
+          ),
+          printedData,
         );
       });
 
@@ -51,7 +91,7 @@ void main() {
               timestamp: timestamp,
             ),
           ),
-          '\n$tab${StackTrace.empty}',
+          '\n${StackTrace.empty}',
         );
       });
 
@@ -60,7 +100,7 @@ void main() {
           formatter.format(
             defaultTheme,
             LogEntry(
-              stacktrace: stacktrace,
+              stacktrace: StackTrace.fromString(mockStacktrace),
               level: level,
               timestamp: timestamp,
             ),
@@ -69,20 +109,79 @@ void main() {
         );
       });
 
-      test('Format message, error & stacktrace', () {
+      test('Format message & error', () {
         expect(
           formatter.format(
             defaultTheme,
             LogEntry(
               message: message,
               error: error,
-              stacktrace: stacktrace,
+              stacktrace: StackTrace.fromString(mockStacktrace),
               level: level,
               timestamp: timestamp,
             ),
           ),
           '$message\n$tab$error\n$formattedStacktrace',
         );
+      });
+
+      test('Format message & stacktrace', () {
+        expect(
+            formatter.format(
+              defaultTheme,
+              LogEntry(
+                message: message,
+                stacktrace: StackTrace.fromString(mockStacktrace),
+                level: level,
+                timestamp: timestamp,
+              ),
+            ),
+            '$message\n$formattedStacktrace');
+      });
+
+      test('Format message & data', () {
+        expect(
+            formatter.format(
+              defaultTheme,
+              LogEntry(
+                message: message,
+                level: level,
+                timestamp: timestamp,
+                data: data,
+              ),
+            ),
+            '$message$printedData');
+      });
+
+      test('Format message, stacktrace & data', () {
+        expect(
+            formatter.format(
+              defaultTheme,
+              LogEntry(
+                message: message,
+                stacktrace: StackTrace.fromString(mockStacktrace),
+                level: level,
+                timestamp: timestamp,
+                data: data,
+              ),
+            ),
+            '$message\n$formattedStacktrace$printedData');
+      });
+
+      test('Format message, error, stacktrace & data', () {
+        expect(
+            formatter.format(
+              defaultTheme,
+              LogEntry(
+                message: message,
+                error: error,
+                stacktrace: StackTrace.fromString(mockStacktrace),
+                level: level,
+                timestamp: timestamp,
+                data: data,
+              ),
+            ),
+            '$message\n$tab$error\n$formattedStacktrace$printedData');
       });
     });
 

@@ -12,7 +12,9 @@ class _$LogEntryImpl extends LogEntry {
     this.message,
     this.error,
     this.stacktrace,
-  }) : super.ctor();
+    Map<String, dynamic> data = const <String, dynamic>{},
+  })  : _data = data,
+        super.ctor();
 
   @override
   final LogLevel level;
@@ -28,6 +30,10 @@ class _$LogEntryImpl extends LogEntry {
 
   @override
   final StackTrace? stacktrace;
+
+  @override
+  Map<String, dynamic> get data => Map<String, dynamic>.unmodifiable(_data);
+  final Map<String, dynamic> _data;
 
   factory _$LogEntryImpl.fromJson(Map<dynamic, dynamic> json) {
     return _$LogEntryImpl(
@@ -50,6 +56,13 @@ class _$LogEntryImpl extends LogEntry {
           : jsonConverterRegistrant
               .find(StackTrace)
               .fromJson(json['stacktrace'], json, 'stacktrace') as StackTrace,
+      data: json['data'] == null
+          ? const <String, dynamic>{}
+          : <String, dynamic>{
+              for (final MapEntry<dynamic, dynamic> e0
+                  in (json['data'] as Map<dynamic, dynamic>).entries)
+                e0.key as String: e0.value,
+            },
     );
   }
 
@@ -67,6 +80,10 @@ class _$LogEntryImpl extends LogEntry {
       'stacktrace': stacktrace == null
           ? null
           : jsonConverterRegistrant.find(StackTrace).toJson(stacktrace),
+      'data': <String, dynamic>{
+        for (final MapEntry<String, dynamic> e0 in data.entries)
+          e0.key: e0.value,
+      },
     };
   }
 
@@ -79,7 +96,8 @@ class _$LogEntryImpl extends LogEntry {
             timestamp == other.timestamp &&
             message == other.message &&
             error == other.error &&
-            stacktrace == other.stacktrace;
+            stacktrace == other.stacktrace &&
+            deepEquality(data, other.data);
   }
 
   @override
@@ -99,7 +117,7 @@ class _$LogEntryImpl extends LogEntry {
     String toStringOutput = 'LogEntry{<optimized out>}';
     assert(() {
       toStringOutput =
-          'LogEntry@<$hexIdentity>{level: $level, timestamp: $timestamp, message: $message, error: $error, stacktrace: $stacktrace}';
+          'LogEntry@<$hexIdentity>{level: $level, timestamp: $timestamp, message: $message, error: $error, stacktrace: $stacktrace, data: $data}';
       return true;
     }());
     return toStringOutput;
@@ -120,12 +138,15 @@ abstract interface class _LogEntryCopyWithProxy {
 
   LogEntry stacktrace(StackTrace? newValue);
 
+  LogEntry data(Map<String, dynamic> newValue);
+
   LogEntry call({
     final LogLevel? level,
     final DateTime? timestamp,
     final Object? message,
     final Object? error,
     final StackTrace? stacktrace,
+    final Map<String, dynamic>? data,
   });
 }
 
@@ -156,12 +177,17 @@ class _LogEntryCopyWithProxyImpl implements _LogEntryCopyWithProxy {
 
   @pragma('vm:prefer-inline')
   @override
+  LogEntry data(Map<String, dynamic> newValue) => this(data: newValue);
+
+  @pragma('vm:prefer-inline')
+  @override
   LogEntry call({
     final LogLevel? level,
     final DateTime? timestamp,
     final Object? message = const Object(),
     final Object? error = const Object(),
     final Object? stacktrace = const Object(),
+    final Map<String, dynamic>? data,
   }) {
     return _$LogEntryImpl(
       level: level ?? _value.level,
@@ -174,6 +200,7 @@ class _LogEntryCopyWithProxyImpl implements _LogEntryCopyWithProxy {
       stacktrace: identical(stacktrace, const Object())
           ? _value.stacktrace
           : (stacktrace as StackTrace?),
+      data: data ?? _value.data,
     );
   }
 }
@@ -193,12 +220,15 @@ sealed class $LogEntryCopyWithProxyChain<$Result> {
 
   $Result stacktrace(StackTrace? newValue);
 
+  $Result data(Map<String, dynamic> newValue);
+
   $Result call({
     final LogLevel? level,
     final DateTime? timestamp,
     final Object? message,
     final Object? error,
     final StackTrace? stacktrace,
+    final Map<String, dynamic>? data,
   });
 }
 
@@ -231,12 +261,17 @@ class _LogEntryCopyWithProxyChainImpl<$Result>
 
   @pragma('vm:prefer-inline')
   @override
+  $Result data(Map<String, dynamic> newValue) => this(data: newValue);
+
+  @pragma('vm:prefer-inline')
+  @override
   $Result call({
     final LogLevel? level,
     final DateTime? timestamp,
     final Object? message = const Object(),
     final Object? error = const Object(),
     final Object? stacktrace = const Object(),
+    final Map<String, dynamic>? data,
   }) {
     return _chain(_$LogEntryImpl(
       level: level ?? _value.level,
@@ -249,6 +284,7 @@ class _LogEntryCopyWithProxyChainImpl<$Result>
       stacktrace: identical(stacktrace, const Object())
           ? _value.stacktrace
           : (stacktrace as StackTrace?),
+      data: data ?? _value.data,
     ));
   }
 }
