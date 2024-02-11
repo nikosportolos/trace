@@ -77,84 +77,114 @@ class LoggerManager {
   }
 
   /// Verbose logging
-  void verbose(final Object? message) {
+  void verbose(
+    final Object? message, {
+    final Object? error,
+    final StackTrace? stackTrace,
+    Map<String, dynamic> data = const <String, dynamic>{},
+  }) {
     log(LogEntry.create(
       message: message,
-      error: null,
-      stacktrace: null,
+      error: error,
+      stacktrace: stackTrace,
       level: LogLevel.verbose,
+      data: data,
     ));
   }
 
   /// Log debugging messages
-  void debug(final Object? message) {
+  void debug(
+    final Object? message, {
+    final Object? error,
+    final StackTrace? stackTrace,
+    Map<String, dynamic> data = const <String, dynamic>{},
+  }) {
     log(LogEntry.create(
       message: message,
-      error: null,
-      stacktrace: null,
+      error: error,
+      stacktrace: stackTrace,
       level: LogLevel.debug,
+      data: data,
     ));
   }
 
   /// Log info messages
-  void info(final Object? message) {
+  void info(
+    final Object? message, {
+    final Object? error,
+    final StackTrace? stackTrace,
+    Map<String, dynamic> data = const <String, dynamic>{},
+  }) {
     log(LogEntry.create(
       message: message,
       error: null,
       stacktrace: null,
       level: LogLevel.info,
+      data: data,
     ));
   }
 
   /// Log success messages
-  void success(final Object? message) {
+  void success(
+    final Object? message, {
+    final Object? error,
+    final StackTrace? stackTrace,
+    Map<String, dynamic> data = const <String, dynamic>{},
+  }) {
     log(LogEntry.create(
       message: message,
       error: null,
       stacktrace: null,
       level: LogLevel.success,
+      data: data,
     ));
   }
 
   /// Log warning messages
   void warning(
-    final Object? message, [
+    final Object? message, {
     final Object? error,
     final StackTrace? stackTrace,
-  ]) {
+    Map<String, dynamic> data = const <String, dynamic>{},
+  }) {
     log(LogEntry.create(
       message: message,
       error: error,
       stacktrace: stackTrace,
       level: LogLevel.warning,
+      data: data,
     ));
   }
 
   /// Log error messages
   void error(
-    final Object? message, [
+    final Object? message, {
     final Object? error,
     final StackTrace? stackTrace,
-  ]) {
+    Map<String, dynamic> data = const <String, dynamic>{},
+  }) {
     log(LogEntry.create(
       message: message,
       error: error,
       stacktrace: stackTrace,
       level: LogLevel.error,
+      data: data,
     ));
   }
 
   /// Log fatal error messages
   void fatal(
-    final Object? message, [
+    final Object? message, {
     final Object? error,
     final StackTrace? stackTrace,
-  ]) {
+    Map<String, dynamic> data = const <String, dynamic>{},
+  }) {
     log(LogEntry.create(
       message: message,
       error: error,
       stacktrace: stackTrace,
       level: LogLevel.fatal,
+      data: data,
     ));
   }
 
@@ -171,6 +201,7 @@ class LoggerManager {
           message: e,
           error: entry.error,
           stacktrace: entry.stacktrace,
+          data: entry.data,
         );
       }).toList(growable: false);
 

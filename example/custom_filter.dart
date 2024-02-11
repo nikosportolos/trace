@@ -22,13 +22,13 @@ void main() async {
   Trace.warning('This is a warning test message');
   Trace.error(
     'This is an error test message',
-    Exception('Random exception'),
-    StackTrace.current,
+    error: Exception('Random exception'),
+    stackTrace: StackTrace.current,
   );
   Trace.fatal(
     'This is a fatal test message',
-    Exception('Critical exception'),
-    StackTrace.current,
+    error: Exception('Critical exception'),
+    stackTrace: StackTrace.current,
   );
 
   await Trace.dispose();

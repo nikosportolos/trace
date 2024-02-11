@@ -7,17 +7,18 @@ class MessageFormatter extends LogSectionFormatter {
   const MessageFormatter({
     final bool? showError,
     final bool? showStackTrace,
+    final bool? showData,
   })  : showError = showError ?? true,
-        showStackTrace = showStackTrace ?? true;
+        showStackTrace = showStackTrace ?? true,
+        showData = showData ?? true;
 
   final bool showError;
   final bool showStackTrace;
+  final bool showData;
 
   @override
   String format(final LoggerTheme theme, final LogEntry entry) {
-    if (entry.message == null &&
-        entry.error == null &&
-        entry.stacktrace == null) {
+    if (entry.isEmpty) {
       return '';
     }
 
@@ -37,14 +38,28 @@ class MessageFormatter extends LogSectionFormatter {
     }
 
     if (entry.stacktrace != null && showStackTrace) {
+      final List<String> lines = entry.stacktrace
+          .toString()
+          .split(AnsiEscapeCodes.newLine)
+          .where((String s) => s.isNotEmpty)
+          .toList(growable: false);
+
       buffer.writeln();
-      buffer.write(
-        entry.stacktrace
-            .toString()
-            .split(AnsiEscapeCodes.newLine)
-            .map((String s) => '${' ' * theme.stacktraceIndent}$s')
-            .join(AnsiEscapeCodes.newLine),
-      );
+      for (int i = 0; i < lines.length; i++) {
+        buffer.write('${' ' * theme.stacktraceIndent}${lines[i]}');
+        if (i < lines.length - 1) {
+          buffer.write(AnsiEscapeCodes.newLine);
+        }
+      }
+    }
+
+    if (showData && entry.data.isNotEmpty) {
+      buffer
+        ..writeln()
+        ..writeSpaces(theme.stacktraceIndent)
+        ..write(const JsonEncoder.withIndent('  ')
+            .convert(entry.data)
+            .replaceAll('\n', '\n${' ' * theme.stacktraceIndent}'));
     }
 
     return AnsiText.withTheme(

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:ansix/ansix.dart';
 import 'package:date_time_format/date_time_format.dart';
 import 'package:trace/src/core/core.dart';

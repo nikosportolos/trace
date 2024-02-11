@@ -18,13 +18,15 @@ abstract class LogEntry {
     Object? message,
     Object? error,
     StackTrace? stacktrace,
+    Map<String, dynamic> data,
   }) = _$LogEntryImpl;
 
   factory LogEntry.create({
-    required LogLevel level,
-    Object? message,
-    Object? error,
+    required final LogLevel level,
+    final Object? message,
+    final Object? error,
     StackTrace? stacktrace,
+    final Map<String, dynamic> data = const <String, dynamic>{},
   }) {
     return LogEntry(
       timestamp: DateTime.now(),
@@ -32,6 +34,7 @@ abstract class LogEntry {
       message: message,
       error: error,
       stacktrace: stacktrace,
+      data: data,
     );
   }
 
@@ -44,6 +47,12 @@ abstract class LogEntry {
   Object? get error;
 
   StackTrace? get stacktrace;
+
+  @DefaultValue(<String, dynamic>{})
+  Map<String, dynamic> get data;
+
+  bool get isEmpty =>
+      message == null && error == null && stacktrace == null && data.isEmpty;
 
   /// Creates an instance of [LogEntry] from [json]
   factory LogEntry.fromJson(Map<dynamic, dynamic> json) =

@@ -43,40 +43,123 @@ abstract class Trace {
   static void print(final Object? message) => _manager.print(message);
 
   /// Log a verbose message
-  static void verbose(final Object? message) => _manager.verbose(message);
+  static void verbose(
+    final Object? message, {
+    final Object? error,
+    final StackTrace? stackTrace,
+    Map<String, dynamic> data = const <String, dynamic>{},
+  }) {
+    _manager.verbose(
+      message,
+      error: error,
+      stackTrace: stackTrace,
+      data: data,
+    );
+  }
 
   /// Log a debugging message
-  static void debug(final Object? message) => _manager.debug(message);
+  static void debug(
+    final Object? message, {
+    final Object? error,
+    final StackTrace? stackTrace,
+    Map<String, dynamic> data = const <String, dynamic>{},
+  }) {
+    _manager.debug(
+      message,
+      error: error,
+      stackTrace: stackTrace,
+      data: data,
+    );
+  }
 
   /// Log an info message
-  static void info(final Object? message) => _manager.info(message);
+  static void info(
+    final Object? message, {
+    final Object? error,
+    final StackTrace? stackTrace,
+    Map<String, dynamic> data = const <String, dynamic>{},
+  }) {
+    _manager.info(
+      message,
+      error: error,
+      stackTrace: stackTrace,
+      data: data,
+    );
+  }
 
   /// Log a success message
-  static void success(final Object? message) => _manager.success(message);
+  static void success(
+    final Object? message, {
+    final Object? error,
+    final StackTrace? stackTrace,
+    Map<String, dynamic> data = const <String, dynamic>{},
+  }) {
+    _manager.success(
+      message,
+      error: error,
+      stackTrace: stackTrace,
+      data: data,
+    );
+  }
 
   /// Log warning message
-  static void warning(final Object? message,
-          [final Object? error, final StackTrace? stackTrace]) =>
-      _manager.warning(message, error, stackTrace);
+  static void warning(
+    final Object? message, {
+    final Object? error,
+    final StackTrace? stackTrace,
+    Map<String, dynamic> data = const <String, dynamic>{},
+  }) {
+    _manager.warning(
+      message,
+      error: error,
+      stackTrace: stackTrace,
+      data: data,
+    );
+  }
 
   /// Log an error message
-  static void error(final Object? message,
-          [final Object? error, final StackTrace? stackTrace]) =>
-      _manager.error(message, error, stackTrace);
+  static void error(
+    final Object? message, {
+    final Object? error,
+    final StackTrace? stackTrace,
+    Map<String, dynamic> data = const <String, dynamic>{},
+  }) {
+    _manager.error(
+      message,
+      error: error,
+      stackTrace: stackTrace,
+      data: data,
+    );
+  }
 
   /// Log a fatal error messages
-  static void fatal(final Object? message,
-          [final Object? error, final StackTrace? stackTrace]) =>
-      _manager.fatal(message, error, stackTrace);
+  static void fatal(
+    final Object? message, {
+    final Object? error,
+    final StackTrace? stackTrace,
+    Map<String, dynamic> data = const <String, dynamic>{},
+  }) {
+    _manager.fatal(
+      message,
+      error: error,
+      stackTrace: stackTrace,
+      data: data,
+    );
+  }
 
   static void printListItem(
     final Object? message, {
     final int level = 0,
     final LogLevel logLevel = LogLevel.info,
     final Map<int, ListItemTheme>? map,
-  }) =>
-      _manager.printListItem(message,
-          level: level, logLevel: logLevel, map: map ?? listItemThemeMap);
+  }) {
+    _manager.printListItem(
+      message,
+      level: level,
+      logLevel: logLevel,
+      map: map ?? listItemThemeMap,
+    );
+  }
 
   /// Dispose all registered loggers
   static Future<void> dispose() async => await _manager.dispose();
