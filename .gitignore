@@ -8,6 +8,7 @@ build/
 *.iws
 .idea/assetWizardSettings.xml
 .idea/caches
+.idea/git_toolbox_blame.xml
 
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
@@ -42,3 +43,5 @@ example/logs
 # Avoid committing pubspec.lock for library packages; see
 # https://dart.dev/guides/libraries/private-files#pubspeclock.
 pubspec.lock
+
+.DS_STORE

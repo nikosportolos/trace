@@ -3,3 +3,4 @@
 /logs/*
 /scripts/*
 /codecov.yaml
+.DS_STORE
