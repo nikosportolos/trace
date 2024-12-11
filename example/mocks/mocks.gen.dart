@@ -31,7 +31,7 @@ class _$MovieImpl extends Movie {
   }
 
   @override
-  bool operator ==(Object? other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         other is Movie &&
             runtimeType == other.runtimeType &&

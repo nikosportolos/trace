@@ -71,15 +71,13 @@ class _$LogEntryImpl extends LogEntry {
     return <String, dynamic>{
       'level': level.toJson(),
       'timestamp': jsonConverterRegistrant.find(DateTime).toJson(timestamp),
-      'message': message == null
-          ? null
-          : jsonConverterRegistrant.find(Object).toJson(message),
-      'error': error == null
-          ? null
-          : jsonConverterRegistrant.find(Object).toJson(error),
-      'stacktrace': stacktrace == null
-          ? null
-          : jsonConverterRegistrant.find(StackTrace).toJson(stacktrace),
+      if (message != null)
+        'message': jsonConverterRegistrant.find(Object).toJson(message),
+      if (error != null)
+        'error': jsonConverterRegistrant.find(Object).toJson(error),
+      if (stacktrace != null)
+        'stacktrace':
+            jsonConverterRegistrant.find(StackTrace).toJson(stacktrace),
       'data': <String, dynamic>{
         for (final MapEntry<String, dynamic> e0 in data.entries)
           e0.key: e0.value,
@@ -88,7 +86,7 @@ class _$LogEntryImpl extends LogEntry {
   }
 
   @override
-  bool operator ==(Object? other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         other is LogEntry &&
             runtimeType == other.runtimeType &&

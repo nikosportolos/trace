@@ -18,7 +18,7 @@ class _$LogSectionThemeImpl extends LogSectionTheme {
   final LogSectionFormatter formatter;
 
   @override
-  bool operator ==(Object? other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         other is LogSectionTheme &&
             runtimeType == other.runtimeType &&
