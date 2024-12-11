@@ -1,5 +1,3 @@
-library trace;
-
 export 'src/core/core.dart';
 export 'src/filter/filters.dart';
 export 'src/formatter/formatter.dart';
