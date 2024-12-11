@@ -1,5 +1,11 @@
 > This is a pre-release version of [Trace](https://github.com/nikosportolos/trace), so using it in a production environment is not recommended yet.
 
+## v0.0.7-prerelease
+
+- Dependency updates and source code maintenance.
+- Add data map in LogEntry ([#86](https://github.com/nikosportolos/trace/issues/86))
+
+
 ## v0.0.6-prerelease
 
 ### Dependencies
