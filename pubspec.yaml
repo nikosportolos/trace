@@ -8,7 +8,7 @@ documentation: https://github.com/nikosportolos/trace
 issue_tracker: https://github.com/nikosportolos/trace/issues
 
 environment:
-  sdk: ">=3.1.0 <4.0.0"
+  sdk: ">=3.5.3 <4.0.0"
 
 dependencies:
   ansix: ^0.3.3
