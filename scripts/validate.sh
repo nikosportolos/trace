@@ -44,9 +44,9 @@ dart test --color -r expanded || { echo 'tests failed' ; exit 1; }
 echo ""
 
 
-#action="${BLUE}Pub.dev Analysis${NC}"
-#echo "┌───────────────────────────────────────┐"
-#echo -e "│ ${action}                      │"
-#echo "└───────────────────────────────────────┘"
-#dart pub global run pana -l 80 --exit-code-threshold 30
-#echo ""
+action="${BLUE}Pub.dev Analysis${NC}"
+echo "┌───────────────────────────────────────┐"
+echo -e "│ ${action}                      │"
+echo "└───────────────────────────────────────┘"
+dart pub global run pana -l 80 --exit-code-threshold 30
+echo ""
