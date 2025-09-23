@@ -20,10 +20,14 @@ abstract class LogSectionFormatter {
   String format(final LoggerTheme theme, final LogEntry entry);
 
   AnsiTextTheme getTextThemeForSection(
-      final LoggerTheme theme, final LogLevel level, final LogSection section) {
+    final LoggerTheme theme,
+    final LogLevel level,
+    final LogSection section,
+  ) {
     final AnsiColor foregroundColor = theme.colorMap[level] ?? AnsiColor.none;
-    return theme.sectionThemeMap[section]?.textTheme.copyWith
-            .foregroundColor(foregroundColor) ??
+    return theme.sectionThemeMap[section]?.textTheme.copyWith.foregroundColor(
+          foregroundColor,
+        ) ??
         AnsiTextTheme(foregroundColor: foregroundColor);
   }
 }

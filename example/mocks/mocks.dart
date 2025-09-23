@@ -32,14 +32,16 @@ const List<Movie> movies = <Movie>[
   Movie(title: '12 Angry Men', releaseYear: 1957, rate: 9.0),
   Movie(title: 'Schindler\'s List', releaseYear: 1993, rate: 9.0),
   Movie(
-      title: 'The Lord of the Rings: The Return of the King',
-      releaseYear: 2003,
-      rate: 9.0),
+    title: 'The Lord of the Rings: The Return of the King',
+    releaseYear: 2003,
+    rate: 9.0,
+  ),
   Movie(title: 'Pulp Fiction', releaseYear: 1994, rate: 8.9),
   Movie(
-      title: 'The Lord of the Rings: The Fellowship of the Ring',
-      releaseYear: 2001,
-      rate: 8.8),
+    title: 'The Lord of the Rings: The Fellowship of the Ring',
+    releaseYear: 2001,
+    rate: 8.8,
+  ),
   Movie(title: 'The Good, the Bad and the Ugly', releaseYear: 1966, rate: 8.8),
 ];
 

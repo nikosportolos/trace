@@ -129,7 +129,8 @@ class LoggerTheme {
           _sectionThemeMap.addAll(<LogSection, LogSectionTheme>{
             section: LogSectionTheme(
               textTheme: messageTheme ?? const AnsiTextTheme(),
-              formatter: messageFormatter ??
+              formatter:
+                  messageFormatter ??
                   MessageFormatter(
                     showError: showError,
                     showStackTrace: showStackTrace,

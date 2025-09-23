@@ -32,7 +32,8 @@ void main() {
 
       expect(
         rule.canLog(
-            LogEntry.create(level: LogLevel.error, error: MockException())),
+          LogEntry.create(level: LogLevel.error, error: MockException()),
+        ),
         true,
       );
 

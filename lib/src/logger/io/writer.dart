@@ -7,8 +7,8 @@ import 'package:ansix/ansix.dart';
 /// Used for writing text to IO sink.
 abstract interface class SinkWriter {
   SinkWriter(final IOSink? sink)
-      : _sink = sink ?? stdout,
-        _shouldCloseSink = sink != null;
+    : _sink = sink ?? stdout,
+      _shouldCloseSink = sink != null;
 
   final IOSink _sink;
   final bool _shouldCloseSink;

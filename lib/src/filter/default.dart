@@ -10,11 +10,11 @@ class DefaultLogFilter extends LogFilter {
     this.level, {
     final bool debugOnly = true,
   }) : super(
-          rules: <FilterRule>[
-            if (debugOnly) const DebugFilterRule(),
-            LevelFilterRule(level),
-          ],
-        );
+         rules: <FilterRule>[
+           if (debugOnly) const DebugFilterRule(),
+           LevelFilterRule(level),
+         ],
+       );
 
   final LogLevel level;
 }

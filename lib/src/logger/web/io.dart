@@ -13,8 +13,8 @@ class IoLogger implements Logger {
     this.level = LogLevel.verbose,
     final LoggerTheme? theme,
     final LogFilter? filter,
-  })  : theme = theme ?? LoggerTheme(colorMap: LoggerTheme.defaultColorMap),
-        filter = filter ?? DefaultLogFilter(level);
+  }) : theme = theme ?? LoggerTheme(colorMap: LoggerTheme.defaultColorMap),
+       filter = filter ?? DefaultLogFilter(level);
 
   @override
   final LogFilter filter;
@@ -34,8 +34,10 @@ class IoLogger implements Logger {
     final StringBuffer buffer = StringBuffer();
 
     for (final LogSection section in theme.sections) {
-      final String? text =
-          theme.sectionThemeMap[section]?.formatter.format(theme, entry);
+      final String? text = theme.sectionThemeMap[section]?.formatter.format(
+        theme,
+        entry,
+      );
       if (text != null) {
         buffer.write(text);
       }

@@ -83,13 +83,15 @@ class LoggerManager {
     final StackTrace? stackTrace,
     Map<String, dynamic> data = const <String, dynamic>{},
   }) {
-    log(LogEntry.create(
-      message: message,
-      error: error,
-      stacktrace: stackTrace,
-      level: LogLevel.verbose,
-      data: data,
-    ));
+    log(
+      LogEntry.create(
+        message: message,
+        error: error,
+        stacktrace: stackTrace,
+        level: LogLevel.verbose,
+        data: data,
+      ),
+    );
   }
 
   /// Log debugging messages
@@ -99,13 +101,15 @@ class LoggerManager {
     final StackTrace? stackTrace,
     Map<String, dynamic> data = const <String, dynamic>{},
   }) {
-    log(LogEntry.create(
-      message: message,
-      error: error,
-      stacktrace: stackTrace,
-      level: LogLevel.debug,
-      data: data,
-    ));
+    log(
+      LogEntry.create(
+        message: message,
+        error: error,
+        stacktrace: stackTrace,
+        level: LogLevel.debug,
+        data: data,
+      ),
+    );
   }
 
   /// Log info messages
@@ -115,13 +119,15 @@ class LoggerManager {
     final StackTrace? stackTrace,
     Map<String, dynamic> data = const <String, dynamic>{},
   }) {
-    log(LogEntry.create(
-      message: message,
-      error: null,
-      stacktrace: null,
-      level: LogLevel.info,
-      data: data,
-    ));
+    log(
+      LogEntry.create(
+        message: message,
+        error: null,
+        stacktrace: null,
+        level: LogLevel.info,
+        data: data,
+      ),
+    );
   }
 
   /// Log success messages
@@ -131,13 +137,15 @@ class LoggerManager {
     final StackTrace? stackTrace,
     Map<String, dynamic> data = const <String, dynamic>{},
   }) {
-    log(LogEntry.create(
-      message: message,
-      error: null,
-      stacktrace: null,
-      level: LogLevel.success,
-      data: data,
-    ));
+    log(
+      LogEntry.create(
+        message: message,
+        error: null,
+        stacktrace: null,
+        level: LogLevel.success,
+        data: data,
+      ),
+    );
   }
 
   /// Log warning messages
@@ -147,13 +155,15 @@ class LoggerManager {
     final StackTrace? stackTrace,
     Map<String, dynamic> data = const <String, dynamic>{},
   }) {
-    log(LogEntry.create(
-      message: message,
-      error: error,
-      stacktrace: stackTrace,
-      level: LogLevel.warning,
-      data: data,
-    ));
+    log(
+      LogEntry.create(
+        message: message,
+        error: error,
+        stacktrace: stackTrace,
+        level: LogLevel.warning,
+        data: data,
+      ),
+    );
   }
 
   /// Log error messages
@@ -163,13 +173,15 @@ class LoggerManager {
     final StackTrace? stackTrace,
     Map<String, dynamic> data = const <String, dynamic>{},
   }) {
-    log(LogEntry.create(
-      message: message,
-      error: error,
-      stacktrace: stackTrace,
-      level: LogLevel.error,
-      data: data,
-    ));
+    log(
+      LogEntry.create(
+        message: message,
+        error: error,
+        stacktrace: stackTrace,
+        level: LogLevel.error,
+        data: data,
+      ),
+    );
   }
 
   /// Log fatal error messages
@@ -179,31 +191,36 @@ class LoggerManager {
     final StackTrace? stackTrace,
     Map<String, dynamic> data = const <String, dynamic>{},
   }) {
-    log(LogEntry.create(
-      message: message,
-      error: error,
-      stacktrace: stackTrace,
-      level: LogLevel.fatal,
-      data: data,
-    ));
+    log(
+      LogEntry.create(
+        message: message,
+        error: error,
+        stacktrace: stackTrace,
+        level: LogLevel.fatal,
+        data: data,
+      ),
+    );
   }
 
   /// Log a [LogEntry] using all registered loggers
   @visibleForTesting
   void log(final LogEntry entry) {
     if (entry.level >= level) {
-      final List<String> s =
-          entry.message.toString().split(AnsiEscapeCodes.newLine);
+      final List<String> s = entry.message.toString().split(
+        AnsiEscapeCodes.newLine,
+      );
 
-      final List<LogEntry> logs = s.map((String e) {
-        return LogEntry.create(
-          level: entry.level,
-          message: e,
-          error: entry.error,
-          stacktrace: entry.stacktrace,
-          data: entry.data,
-        );
-      }).toList(growable: false);
+      final List<LogEntry> logs = s
+          .map((String e) {
+            return LogEntry.create(
+              level: entry.level,
+              message: e,
+              error: entry.error,
+              stacktrace: entry.stacktrace,
+              data: entry.data,
+            );
+          })
+          .toList(growable: false);
 
       for (final Logger logger in _loggers) {
         for (final LogEntry log in logs) {

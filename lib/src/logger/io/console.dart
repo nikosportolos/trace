@@ -12,6 +12,6 @@ class ConsoleLogger extends IoLogger {
     super.allowAnsi,
     final LoggerTheme? theme,
   }) : super(
-          theme: theme ?? LoggerTheme(colorMap: LoggerTheme.defaultColorMap),
-        );
+         theme: theme ?? LoggerTheme(colorMap: LoggerTheme.defaultColorMap),
+       );
 }

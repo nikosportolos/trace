@@ -127,61 +127,65 @@ void main() {
 
       test('Format message & stacktrace', () {
         expect(
-            formatter.format(
-              defaultTheme,
-              LogEntry(
-                message: message,
-                stacktrace: StackTrace.fromString(mockStacktrace),
-                level: level,
-                timestamp: timestamp,
-              ),
+          formatter.format(
+            defaultTheme,
+            LogEntry(
+              message: message,
+              stacktrace: StackTrace.fromString(mockStacktrace),
+              level: level,
+              timestamp: timestamp,
             ),
-            '$message\n$formattedStacktrace');
+          ),
+          '$message\n$formattedStacktrace',
+        );
       });
 
       test('Format message & data', () {
         expect(
-            formatter.format(
-              defaultTheme,
-              LogEntry(
-                message: message,
-                level: level,
-                timestamp: timestamp,
-                data: data,
-              ),
+          formatter.format(
+            defaultTheme,
+            LogEntry(
+              message: message,
+              level: level,
+              timestamp: timestamp,
+              data: data,
             ),
-            '$message$printedData');
+          ),
+          '$message$printedData',
+        );
       });
 
       test('Format message, stacktrace & data', () {
         expect(
-            formatter.format(
-              defaultTheme,
-              LogEntry(
-                message: message,
-                stacktrace: StackTrace.fromString(mockStacktrace),
-                level: level,
-                timestamp: timestamp,
-                data: data,
-              ),
+          formatter.format(
+            defaultTheme,
+            LogEntry(
+              message: message,
+              stacktrace: StackTrace.fromString(mockStacktrace),
+              level: level,
+              timestamp: timestamp,
+              data: data,
             ),
-            '$message\n$formattedStacktrace$printedData');
+          ),
+          '$message\n$formattedStacktrace$printedData',
+        );
       });
 
       test('Format message, error, stacktrace & data', () {
         expect(
-            formatter.format(
-              defaultTheme,
-              LogEntry(
-                message: message,
-                error: error,
-                stacktrace: StackTrace.fromString(mockStacktrace),
-                level: level,
-                timestamp: timestamp,
-                data: data,
-              ),
+          formatter.format(
+            defaultTheme,
+            LogEntry(
+              message: message,
+              error: error,
+              stacktrace: StackTrace.fromString(mockStacktrace),
+              level: level,
+              timestamp: timestamp,
+              data: data,
             ),
-            '$message\n$tab$error\n$formattedStacktrace$printedData');
+          ),
+          '$message\n$tab$error\n$formattedStacktrace$printedData',
+        );
       });
     });
 

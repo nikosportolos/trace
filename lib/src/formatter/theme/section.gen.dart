@@ -91,9 +91,10 @@ class _LogSectionThemeCopyWithProxyImpl
 }
 
 sealed class $LogSectionThemeCopyWithProxyChain<$Result> {
-  factory $LogSectionThemeCopyWithProxyChain(final LogSectionTheme value,
-          final $Result Function(LogSectionTheme update) chain) =
-      _LogSectionThemeCopyWithProxyChainImpl<$Result>;
+  factory $LogSectionThemeCopyWithProxyChain(
+    final LogSectionTheme value,
+    final $Result Function(LogSectionTheme update) chain,
+  ) = _LogSectionThemeCopyWithProxyChainImpl<$Result>;
 
   $Result textTheme(AnsiTextTheme newValue);
 
@@ -126,10 +127,12 @@ class _LogSectionThemeCopyWithProxyChainImpl<$Result>
     final AnsiTextTheme? textTheme,
     final LogSectionFormatter? formatter,
   }) {
-    return _chain(_$LogSectionThemeImpl(
-      textTheme: textTheme ?? _value.textTheme,
-      formatter: formatter ?? _value.formatter,
-    ));
+    return _chain(
+      _$LogSectionThemeImpl(
+        textTheme: textTheme ?? _value.textTheme,
+        formatter: formatter ?? _value.formatter,
+      ),
+    );
   }
 }
 

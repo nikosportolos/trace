@@ -113,8 +113,9 @@ class _MovieCopyWithProxyImpl implements _MovieCopyWithProxy {
 
 sealed class $MovieCopyWithProxyChain<$Result> {
   factory $MovieCopyWithProxyChain(
-          final Movie value, final $Result Function(Movie update) chain) =
-      _MovieCopyWithProxyChainImpl<$Result>;
+    final Movie value,
+    final $Result Function(Movie update) chain,
+  ) = _MovieCopyWithProxyChainImpl<$Result>;
 
   $Result title(String newValue);
 
@@ -155,11 +156,13 @@ class _MovieCopyWithProxyChainImpl<$Result>
     final int? releaseYear,
     final double? rate,
   }) {
-    return _chain(_$MovieImpl(
-      title: title ?? _value.title,
-      releaseYear: releaseYear ?? _value.releaseYear,
-      rate: rate ?? _value.rate,
-    ));
+    return _chain(
+      _$MovieImpl(
+        title: title ?? _value.title,
+        releaseYear: releaseYear ?? _value.releaseYear,
+        rate: rate ?? _value.rate,
+      ),
+    );
   }
 }
 

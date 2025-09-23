@@ -6,6 +6,10 @@ analyzer:
   exclude:
     - lib/**/*.gen.dart
 
+formatter:
+  page_width: 80
+  trailing_commas: preserve
+
 linter:
   rules:
     always_specify_types: true
