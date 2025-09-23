@@ -14,8 +14,9 @@ void main() {
   const String message = 'This is an info message.';
   const LogLevel level = LogLevel.info;
 
-  final Directory logDirectory =
-      Directory(join(Directory.current.path, 'test', 'logs'));
+  final Directory logDirectory = Directory(
+    join(Directory.current.path, 'test', 'logs'),
+  );
 
   final LogFilter filter = DefaultLogFilter(level);
   final IoLogger logger = FileLogger(
@@ -44,8 +45,9 @@ void main() {
       logger.log(entry);
       logger.writeln('testing writeln');
 
-      final List<FileSystemEntity> files =
-          logDirectory.listSync(recursive: true);
+      final List<FileSystemEntity> files = logDirectory.listSync(
+        recursive: true,
+      );
       expect(files.length, 1);
 
       await logger.dispose();

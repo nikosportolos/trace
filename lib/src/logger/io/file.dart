@@ -17,10 +17,10 @@ class FileLogger extends IoLogger {
     super.level,
     super.filter,
   }) : super(
-          allowAnsi: false,
-          theme: theme ?? LoggerTheme(),
-          ioSink: File(_getLogPath(path, filename)).safeOpen(),
-        );
+         allowAnsi: false,
+         theme: theme ?? LoggerTheme(),
+         ioSink: File(_getLogPath(path, filename)).safeOpen(),
+       );
 
   static String _getLogPath(
     final String? path,

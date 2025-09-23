@@ -64,7 +64,7 @@ class LogLevel implements Comparable<LogLevel> {
     success,
     warning,
     error,
-    fatal
+    fatal,
   ];
 
   @override

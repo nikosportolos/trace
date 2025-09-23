@@ -17,9 +17,9 @@ class IoLogger implements Logger {
     this.level = LogLevel.verbose,
     final LoggerTheme? theme,
     final bool allowAnsi = true,
-  })  : theme = theme ?? LoggerTheme(),
-        filter = filter ?? DefaultLogFilter(level),
-        writer = SinkWriter.create(ioSink, allowAnsi);
+  }) : theme = theme ?? LoggerTheme(),
+       filter = filter ?? DefaultLogFilter(level),
+       writer = SinkWriter.create(ioSink, allowAnsi);
 
   @override
   final LogFilter filter;
@@ -39,8 +39,10 @@ class IoLogger implements Logger {
     }
 
     for (final LogSection section in theme.sections) {
-      final String? text =
-          theme.sectionThemeMap[section]?.formatter.format(theme, entry);
+      final String? text = theme.sectionThemeMap[section]?.formatter.format(
+        theme,
+        entry,
+      );
       if (text != null) {
         writer.write(text);
       }

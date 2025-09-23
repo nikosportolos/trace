@@ -8,9 +8,9 @@ class MessageFormatter extends LogSectionFormatter {
     final bool? showError,
     final bool? showStackTrace,
     final bool? showData,
-  })  : showError = showError ?? true,
-        showStackTrace = showStackTrace ?? true,
-        showData = showData ?? true;
+  }) : showError = showError ?? true,
+       showStackTrace = showStackTrace ?? true,
+       showData = showData ?? true;
 
   final bool showError;
   final bool showStackTrace;
@@ -57,9 +57,11 @@ class MessageFormatter extends LogSectionFormatter {
       buffer
         ..writeln()
         ..writeSpaces(theme.stacktraceIndent)
-        ..write(const JsonEncoder.withIndent('  ')
-            .convert(entry.data)
-            .replaceAll('\n', '\n${' ' * theme.stacktraceIndent}'));
+        ..write(
+          const JsonEncoder.withIndent('  ')
+              .convert(entry.data)
+              .replaceAll('\n', '\n${' ' * theme.stacktraceIndent}'),
+        );
     }
 
     return AnsiText.withTheme(

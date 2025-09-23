@@ -38,11 +38,13 @@ class CustomLogFilter extends LogFilter {
   CustomLogFilter({
     required final Environment environment,
     required final LogLevel level,
-  }) : super(rules: <FilterRule>[
-          const DebugFilterRule(),
-          CustomLogRule(environment),
-          LevelFilterRule(level),
-        ]);
+  }) : super(
+         rules: <FilterRule>[
+           const DebugFilterRule(),
+           CustomLogRule(environment),
+           LevelFilterRule(level),
+         ],
+       );
 }
 
 class CustomLogRule extends FilterRule {

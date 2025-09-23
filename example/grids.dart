@@ -23,7 +23,7 @@ void main() {
       'Average',
       '',
       '',
-      movies.map((Movie m) => m.rate).toList(growable: false).average
+      movies.map((Movie m) => m.rate).toList(growable: false).average,
     ],
   ];
 
